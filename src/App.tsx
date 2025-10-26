@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { init, backButton, viewport, mainButton } from '@telegram-apps/sdk'
+import { init, backButton, viewport, _mainButton } from '@telegram-apps/sdk'
 import './App.css'
 
 function App() {
@@ -86,7 +86,7 @@ function App() {
                                     console.log('MainButton onClick set')
                                     window.Telegram.WebApp.MainButton._clickCallback = callback
                                 },
-                                offClick: (callback) => {
+                                offClick: (_callback) => {
                                     console.log('MainButton offClick')
                                     window.Telegram.WebApp.MainButton._clickCallback = null
                                 }
@@ -105,7 +105,7 @@ function App() {
                                     console.log('BackButton onClick set')
                                     window.Telegram.WebApp.BackButton._clickCallback = callback
                                 },
-                                offClick: (callback) => {
+                                offClick: (_callback) => {
                                     console.log('BackButton offClick')
                                     window.Telegram.WebApp.BackButton._clickCallback = null
                                 }
