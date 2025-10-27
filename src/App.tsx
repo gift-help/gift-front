@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { init, backButton, viewport, mainButton } from '@telegram-apps/sdk'
 import './App.css'
+import {HomePage} from "./pages/home/ui";
 
 function App() {
     const [isTMA, setIsTMA] = useState(false)
@@ -171,6 +172,7 @@ function App() {
                     <p>Username: @{window.Telegram.WebApp.initDataUnsafe.user.username}</p>
                 </div>
             )}
+            <HomePage />
         </div>
     )
 }
