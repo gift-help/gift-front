@@ -25,14 +25,7 @@ jobs:
             
             echo "____Pulling latest changes____"
             git pull origin main
-
-            echo "____Setting up environment____"
-            export NVM_DIR="$HOME/.nvm"
-            source "$NVM_DIR/nvm.sh"
-            nvm use 22.18.0
             
             echo "____Frontend: installing and building____"
             npm install
             npm run non-type-build
-            
-            cp -r dist /var/www/gift/
