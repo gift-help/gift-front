@@ -152,7 +152,7 @@ function App() {
     return (
         <div className="app">
             <h1>My Telegram Mini App</h1>
-            <p>{new Date().toLocaleString()}</p>
+            <p>v1</p>
             <p>Environment: {isTMA ? 'Telegram' : 'Browser (Development)'}</p>
 
             <div className="buttons">
