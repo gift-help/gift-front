@@ -11,6 +11,6 @@ export const HomePage = () => {
         getData()
     }, []);
     return(
-        <p>главная стр</p>
+        <p>главная стр v1</p>
     )
 }

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "non-type-build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "tunnel": "lt --port 5173 --subdomain my-telegram-app-test"
