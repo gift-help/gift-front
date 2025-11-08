@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true, // Важно для доступа с других устройств
-    port: 5173,
+    port: 5174,
     allowedHosts: [
       '.loca.lt', // Разрешаем все субдомены loca.lt
       'localhost',
