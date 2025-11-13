@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react'
 import { init, backButton, viewport } from '@telegram-apps/sdk'
 import './App.css'
 import '@telegram-apps/telegram-ui/dist/styles.css'
-import { Button } from '@telegram-apps/telegram-ui'
-import { useTelegram } from './hooks/useTelegram'
+import {Button, Input} from '@telegram-apps/telegram-ui'
+import {useCSSTheme} from "./hooks/useCSSTheme.ts";
 
 function App() {
-    const [isTMA, setIsTMA] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
-    const { ready, themeParams } = useTelegram()
+    const [isTMA, setIsTMA] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const { ready, themeParams } = useCSSTheme();
 
     useEffect(() => {
         const initApp = async () => {
@@ -62,10 +62,10 @@ function App() {
         padding: '16px',
     }
 
-    const buttonStyle = {
+    /*const buttonStyle = {
         backgroundColor: themeParams?.button_color ?? '#4dabf7',
         color: themeParams?.button_text_color ?? '#fff',
-    }
+    }*/
 
     if (isLoading || !ready) {
         return <div className="loading">Loading...</div>
@@ -76,10 +76,26 @@ function App() {
             <h1>Gift Mini App</h1>
             <p>Environment: {isTMA ? 'Telegram' : 'Browser (Development)'}</p>
 
-            <div className="buttons">
-                <Button size="l" stretched style={buttonStyle}>
+            <div>
+                <Button size="l" stretched className={"tg-button"}>
                     🎁 Generate Gift Idea
                 </Button>
+            </div>
+
+            <div>
+                <Button size="m"  className={"tg-button--secondary"}>
+                    Secondary button
+                </Button>
+            </div>
+
+            <div className={"card"}>
+                <p>Это карточка</p>
+            </div>
+
+            <div>
+                <Input
+                    placeholder={"А это инпут"}
+                    className={"input"}/>
             </div>
 
             {isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (

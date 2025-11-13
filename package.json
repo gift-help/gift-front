@@ -9,12 +9,13 @@
     "non-type-build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "tunnel": "lt --port 5173 --subdomain my-telegram-app-test"
+    "tunnel": "lt --port 5174 --subdomain my-telegram-app-test"
   },
   "dependencies": {
     "@telegram-apps/sdk": "^3.11.8",
     "@telegram-apps/telegram-ui": "^2.1.13",
     "axios": "^1.12.2",
+    "eruda": "^3.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.65.0",

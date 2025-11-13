@@ -1,39 +1,78 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { init } from '@telegram-apps/sdk';
 
 declare global {
-  interface Window { Telegram?: any; }
+  interface Window {
+    Telegram?: {
+      WebApp?: {
+        themeParams?: Record<string, string>;
+        onEvent?: (event: string, callback: () => void) => void;
+      };
+    };
+  }
 }
 
-export function useTelegram() {
+interface UseTelegramReturn {
+  ready: boolean;
+  themeParams: Record<string, string> | null;
+}
+
+const TELEGRAM_EVENTS = {
+  THEME_CHANGED: 'themeChanged',
+};
+
+export function useTelegram(): UseTelegramReturn {
   const [ready, setReady] = useState(false);
   const [themeParams, setThemeParams] = useState<Record<string, string> | null>(null);
 
+  // Функция для получения параметров темы
+  const getThemeParams = useCallback((): Record<string, string> | null => {
+    console.log(window.Telegram?.WebApp?.themeParams);
+    return window.Telegram?.WebApp?.themeParams ?? null;
+  }, []);
+
+  // Функция для обработки изменения темы
+  const handleThemeChange = useCallback(() => {
+    const newThemeParams = getThemeParams();
+    setThemeParams(newThemeParams ? { ...newThemeParams } : null);
+  }, [getThemeParams]);
+
   useEffect(() => {
     let mounted = true;
+    let cleanup: (() => void) | undefined;
 
-    async function start() {
+    const initializeTelegram = async (): Promise<void> => {
       try {
         await init();
-        const params = window.Telegram?.WebApp?.themeParams ?? null;
-        if (mounted) setThemeParams(params);
+
+        if (!mounted) return;
+
+        const themeParams = getThemeParams();
+        setThemeParams(themeParams);
         setReady(true);
 
-        const web = window.Telegram?.WebApp;
-        if (web?.onEvent) {
-          web.onEvent('themeChanged', () => {
-            const newTheme = window.Telegram?.WebApp?.themeParams ?? null;
-            setThemeParams({ ...newTheme });
-          });
+        // Подписка на события изменения темы
+        const webApp = window.Telegram?.WebApp;
+        if (webApp?.onEvent) {
+          webApp.onEvent(TELEGRAM_EVENTS.THEME_CHANGED, handleThemeChange);
+
+          cleanup = () => {};
         }
-      } catch (err) {
-        setReady(true);
+      } catch (error) {
+        console.error('Failed to initialize Telegram WebApp:', error);
+        if (mounted) {
+          setReady(true);
+        }
       }
-    }
+    };
 
-    start();
-    return () => { mounted = false; };
-  }, []);
+    initializeTelegram();
+
+    return () => {
+      mounted = false;
+      cleanup?.();
+    };
+  }, [getThemeParams, handleThemeChange]);
 
   return { ready, themeParams };
 }
