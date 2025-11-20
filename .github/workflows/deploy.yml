@@ -24,7 +24,9 @@ jobs:
             cd /var/www/gift/frontend
             
             echo "____Pulling latest changes____"
-            git pull origin main
+            git fetch origin
+            git checkout ${{ github.ref_name }}
+            git reset --hard origin/${{ github.ref_name }}
 
             echo "____Loading NVM environment____"
             export NVM_DIR="$HOME/.nvm"

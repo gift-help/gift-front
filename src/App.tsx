@@ -4,6 +4,7 @@ import './App.css'
 import '@telegram-apps/telegram-ui/dist/styles.css'
 import {Button, Input} from '@telegram-apps/telegram-ui'
 import {useCSSTheme} from "./hooks/useCSSTheme.ts";
+import BuildVersion from './components/BuildVersion';
 
 function App() {
     const [isTMA, setIsTMA] = useState(false);
@@ -60,6 +61,8 @@ function App() {
         transition: 'all 0.3s ease',
         minHeight: '100vh',
         padding: '16px',
+        flexDirection: 'column' as const,
+        display: 'flex',
     }
 
     /*const buttonStyle = {
@@ -106,6 +109,7 @@ function App() {
                     <p>Username: @{(window.Telegram.WebApp.initDataUnsafe.user.username)}</p>
                 </div>
             )}
+            <BuildVersion />
         </div>
     )
 }
