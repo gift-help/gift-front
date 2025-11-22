@@ -5,6 +5,7 @@ import '@telegram-apps/telegram-ui/dist/styles.css'
 import {Button, Input} from '@telegram-apps/telegram-ui'
 import {useCSSTheme} from "./hooks/useCSSTheme.ts";
 import BuildVersion from './components/BuildVersion';
+import {Questions} from "./pages/questions/ui";
 
 function App() {
     const [isTMA, setIsTMA] = useState(false);
@@ -76,7 +77,8 @@ function App() {
 
     return (
         <div className="app" style={appStyle}>
-            <h1>Gift Mini App</h1>
+            <Questions />
+            {/*<h1>Gift Mini App</h1>
             <p>Environment: {isTMA ? 'Telegram' : 'Browser (Development)'}</p>
 
             <div>
@@ -99,7 +101,7 @@ function App() {
                 <Input
                     placeholder={"А это инпут"}
                     className={"input"}/>
-            </div>
+            </div>*/}
 
             {isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
                 <div className="user-info">
@@ -109,6 +111,7 @@ function App() {
                     <p>Username: @{(window.Telegram.WebApp.initDataUnsafe.user.username)}</p>
                 </div>
             )}
+
             <BuildVersion />
         </div>
     )
