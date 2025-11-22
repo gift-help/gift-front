@@ -1,10 +1,15 @@
 import axios from "axios";
 
-export const BASE_URL = 'http://localhost:5000'
+export const BASE_URL = 'https://gift.dubskilw.beget.tech'
 
 export const instance = axios.create({
     baseURL: BASE_URL,
     timeout: 100000,
-    /*headers: { 'Content-Type': 'application/json', 'Accept': '*!/!*'}*/
+    /*withCredentials: true, // ДОБАВЬТЕ ЭТУ СТРОЧКУ
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }*/
+    headers: { 'Content-Type': 'application/json', }
 });
 

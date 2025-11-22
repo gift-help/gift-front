@@ -5,11 +5,14 @@ import '@telegram-apps/telegram-ui/dist/styles.css'
 import {Button, Input} from '@telegram-apps/telegram-ui'
 import {useCSSTheme} from "./hooks/useCSSTheme.ts";
 import BuildVersion from './components/BuildVersion';
+import {HomePage} from "./pages/home/ui";
+import { useAuth } from './hooks/useAuth'; // Добавляем импорт
 
 function App() {
     const [isTMA, setIsTMA] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const { ready, themeParams } = useCSSTheme();
+    const { token, isLoading: authLoading, error: authError, refreshToken } = useAuth(); // Используем хук аутентификации
 
     useEffect(() => {
         const initApp = async () => {
@@ -34,8 +37,10 @@ function App() {
                                     first_name: 'Test',
                                     username: 'test_user',
                                 },
+                                auth_date: Math.floor(Date.now() / 1000),
+                                hash: 'mock_hash',
                             },
-        
+
                             expand: () => console.log('expanded'),
                             ready: () => console.log('ready'),
                             close: () => console.log('close'),
@@ -65,19 +70,38 @@ function App() {
         display: 'flex',
     }
 
-    /*const buttonStyle = {
-        backgroundColor: themeParams?.button_color ?? '#4dabf7',
-        color: themeParams?.button_text_color ?? '#fff',
-    }*/
-
-    if (isLoading || !ready) {
+    if (isLoading || !ready || authLoading) {
         return <div className="loading">Loading...</div>
+    }
+
+    if (authError) {
+        return (
+            <div className="app" style={appStyle}>
+                <div className="error-container">
+                    <h2>Authentication Error</h2>
+                    <p>{authError}</p>
+                    <Button onClick={refreshToken}>
+                        Retry Authentication
+                    </Button>
+                </div>
+            </div>
+        );
     }
 
     return (
         <div className="app" style={appStyle}>
             <h1>Gift Mini App</h1>
             <p>Environment: {isTMA ? 'Telegram' : 'Browser (Development)'}</p>
+
+            {/* Показываем статус аутентификации */}
+            <div className="auth-status">
+                <p>Authentication: {token ? '✅ Success' : '❌ Failed'}</p>
+                {token && (
+                    <p className="token-info">
+                        Token: {token.substring(0, 20)}...
+                    </p>
+                )}
+            </div>
 
             <div>
                 <Button size="l" stretched className={"tg-button"}>
@@ -86,7 +110,7 @@ function App() {
             </div>
 
             <div>
-                <Button size="m"  className={"tg-button--secondary"}>
+                <Button size="m" className={"tg-button--secondary"}>
                     Secondary button
                 </Button>
             </div>
@@ -110,6 +134,7 @@ function App() {
                 </div>
             )}
             <BuildVersion />
+            {/*<HomePage />*/}
         </div>
     )
 }

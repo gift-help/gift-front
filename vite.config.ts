@@ -24,7 +24,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true, // Важно для доступа с других устройств
-    port: 5174,
+    port: 5173,
     allowedHosts: [
       '.loca.lt', // Разрешаем все субдомены loca.lt
       'localhost',
@@ -32,7 +32,7 @@ export default defineConfig({
       '.serveo.net', // Для serveo
       '.loca.lt',
       'salty-wombats-own.loca.lt' // Конкретно ваш домен
-    ]
+    ],
   },
   define: {
     'import.meta.env.VITE_COMMIT_HASH': JSON.stringify(commitHash),
