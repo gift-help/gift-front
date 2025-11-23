@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { init, backButton, viewport } from '@telegram-apps/sdk'
-import './App.css'
-import './i18n'; // Импорт должен быть здесь
 import '@telegram-apps/telegram-ui/dist/styles.css'
+import './index.css'
+import './i18n';
 import { Button, Input } from '@telegram-apps/telegram-ui'
 import { useCSSTheme } from "./hooks/useCSSTheme.ts";
 import BuildVersion from './components/BuildVersion';
@@ -100,7 +100,6 @@ function App() {
         <div className="app" style={appStyle}>
             <Questions />
             {/*<h1>Gift Mini App</h1>
-            {/* Используйте t без префикса common:, т.к. это defaultNS */}
             <h1>{t('title')}</h1>
             <p>Environment: {isTMA ? 'Telegram' : 'Browser (Development)'}</p>
             <p>Current Language: {currentLanguage}</p>
@@ -108,13 +107,13 @@ function App() {
 
 
             <div>
-                <Button size="l" stretched className={"tg-button"}>
+                <Button size="l" stretched className={"tg-button"} mode={'filled'}>
                     🎁 Generate Gift Idea
                 </Button>
             </div>
 
             <div>
-                <Button size="m" className={"tg-button--secondary"}>
+                <Button size="m" className={"tg-button--secondary"} mode={'bezeled'}>
                     Secondary button
                 </Button>
             </div>
@@ -129,7 +128,7 @@ function App() {
                     className={"input"}/>
             </div>*/}
 
-            {isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
+            {/*{isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
                 <div className="user-info">
                     <h2>User Info:</h2>
                     <p>ID: {window.Telegram.WebApp.initDataUnsafe.user.id} </p>
@@ -137,7 +136,7 @@ function App() {
                     <p>Username: @{(window.Telegram.WebApp.initDataUnsafe.user.username)}</p>
                     <p>Language: {window.Telegram.WebApp.initDataUnsafe.user.language_code}</p>
                 </div>
-            )}
+            )}*/}
 
             <BuildVersion />
         </div>

@@ -16,6 +16,20 @@ class FormInfoStore {
     constructor() {
         makeAutoObservable(this);
     }
+
+    addTag = (tag: string, item: string) => {
+        if (!this.tags[tag]) {
+            this.tags[tag] = [];
+        }
+
+        if (!this.tags[tag].includes(item)) {
+            this.tags[tag].push(item);
+        } else {
+            this.tags[tag] = this.tags[tag].filter(t => t !== item)
+        }
+
+        console.log(this.tags);
+    };
 }
 
 const formInfoStore = new FormInfoStore();

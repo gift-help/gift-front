@@ -4,18 +4,22 @@ import { initReactI18next } from 'react-i18next';
 // Импорт переводов
 import enCommon from '../src/locales/en/common.json';
 import enButtons from '../src/locales/en/buttons.json';
+import enTags from '../src/locales/en/tags.json';
 
 import ruCommon from '../src/locales/ru/common.json';
 import ruButtons from '../src/locales/ru/buttons.json';
+import ruTags from '../src/locales/ru/tags.json';
 
 const resources = {
     en: {
         common: enCommon,
         buttons: enButtons,
+        tags: enTags
     },
     ru: {
         common: ruCommon,
         buttons: ruButtons,
+        tags: ruTags
     },
 };
 
