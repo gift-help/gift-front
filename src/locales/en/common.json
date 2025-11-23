@@ -1,0 +1,8 @@
+{
+  "welcome": "Welcome to our app!",
+  "title": "My Telegram App",
+  "description": "This is a multilingual Telegram Mini App",
+  "loading": "Loading...",
+  "error": "An error occurred",
+  "success": "Operation completed successfully"
+}
