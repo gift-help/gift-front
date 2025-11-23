@@ -6,7 +6,7 @@ let commitHash = 'DEV';
 try {
   commitHash = execSync('git rev-parse --short=7 HEAD').toString().trim();
 } catch (e) {
-  console.warn('Could not get git hash, using default.');
+  console.warn('Could not get git hash, using default.', e);
 }
 
 const now = new Date();
