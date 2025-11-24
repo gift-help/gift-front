@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 import { execSync } from 'child_process';
+import path from 'path';
 
 let commitHash = 'DEV';
 try {
@@ -31,11 +32,16 @@ export default defineConfig({
       '.ngrok-free.app', // Для ngrok
       '.serveo.net', // Для serveo
       '.loca.lt',
-      'salty-wombats-own.loca.lt' // Конкретно ваш домен
-    ]
+      'salty-wombats-own.loca.lt', // Конкретно ваш домен
+    ],
   },
   define: {
     'import.meta.env.VITE_COMMIT_HASH': JSON.stringify(commitHash),
     'import.meta.env.VITE_BUILD_TIME': JSON.stringify(buildTime),
   },
-})
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+});
