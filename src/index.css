@@ -132,3 +132,10 @@
   background-color: var(--tg-secondary-bg-color) ;
   padding: 20px;
 }
+
+.badge {
+  position: absolute;
+  right: -10px;
+  top: 5px;
+  transform: translateY(-50%)
+}

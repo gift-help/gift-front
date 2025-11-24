@@ -1,4 +1,4 @@
-import {Chip, Modal} from "@telegram-apps/telegram-ui";
+import {Button, Chip, Modal} from "@telegram-apps/telegram-ui";
 import {useTags} from "../../../../hooks/useTags.ts";
 import React, {useState} from "react";
 import {observer} from "mobx-react-lite";
@@ -13,7 +13,6 @@ interface TagsModalProps {
 export const TagsModal = observer(({tag, setOpen, open}: TagsModalProps) => {
     const { getCategories, getCategoryItems } = useTags();
     const {tags} = formInfoStore;
-    console.log(tags)
 
     const items = getCategoryItems(tag);
 
@@ -29,14 +28,14 @@ export const TagsModal = observer(({tag, setOpen, open}: TagsModalProps) => {
         >
             <div style={{display: 'flex', flexWrap :'wrap', justifyContent: 'center', gap: '5px'}}>
                 {items.map(item => (
-                    <Chip
+                    <Button
                         key={item.id}
-                        mode={!!tags?.[tag]?.includes(item.name) ? 'mono' : 'outline'}
-                        className={'chip'}
+                        mode={!!tags?.[tag]?.includes(item.name) ? 'filled' : 'bezeled'}
+                        size={'s'}
                         onClick={() => handleItemClick(item.name)}
                     >
                         {item.name}
-                    </Chip>
+                    </Button>
                 ))}
             </div>
         </Modal>

@@ -5,12 +5,14 @@ import {Badge, Button, Chip} from "@telegram-apps/telegram-ui";
 import '../../../../index.css'
 import {TagsModal} from "./TagsModal.tsx";
 import {useTranslation} from "react-i18next";
+import formInfoStore from "../../../../shared/store/store.ts";
 
 export const Tags = () => {
     const { getCategories, getCategoryItems } = useTags();
     const [selectedCategory, setSelectedCategory] = useState();
     const [openModal, setOpenModal] = useState(false);
     const { t } = useTranslation();
+    const {tags} = formInfoStore;
 
     const categories = getCategories();
 
@@ -39,36 +41,30 @@ export const Tags = () => {
             }}
             >
                 {categories.map(category => (
+                    <div style={{
+                        position: 'relative'
+                    }}>
+                        <Button
+                            key={category.id}
+                            onClick={() => handleTagClick(category.id)}
+                            mode={(tags?.[category.id]?.length > 0) ? 'filled' : 'bezeled'}
+                            size={'s'}
+                        >
+                            {category.name}
 
-                    <Chip
-                        key={category.id}
-                        onClick={() => handleTagClick(category.id)}
-                        mode={selectedCategory == category.id ? 'mono' : 'outline'}
-                        className={`chip ${selectedCategory == category.id ? 'selected' : ''}`}
-                        size={20}
-                        style={{
-                            position: 'relative'
-                        }}
-                    >
-                        {category.name}
-                        <Badge type={'dot'} mode="prominent"
-                               size="s" style={{
-                            position: 'absolute',
-                            right: '8px',
-                            top: '50%',
-                            transform: 'translateY(-50%)'
-                        }}>
-                            5
-                        </Badge>
-                    </Chip>
+                        </Button>
+                        {tags?.[category.id]?.length && <Badge
+                            type={'number'}
+                            mode={'white'}
+                            className={'badge'}
+                        >
+                            {tags?.[category.id]?.length}
+                        </Badge>}
+                    </div>
+
                 ))}
             </div>
-            <Button
-                size="m"
-                mode={'filled'}
-            >
-                {t('buttons:next')}
-            </Button>
+
             <TagsModal open={openModal} tag={selectedCategory} setOpen={setOpenModal} />
         </div>
     );

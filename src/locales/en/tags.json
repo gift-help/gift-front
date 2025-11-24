@@ -14,16 +14,16 @@
   },
   "items": {
     "creativity": {
-      "drawing": "Плавание",
-      "photography": "Хоккей",
-      "knitting": "Футбол",
-      "embroidery": "Плавание",
-      "calligraphy": "Хоккей",
-      "interior": "Футбол",
-      "guitar": "Плавание",
-      "singing": "Хоккей",
-      "dancing": "Футбол",
-      "sewing": "Футбол"
+      "drawing": "рисование",
+      "photography": "фотография",
+      "knitting": "вязание",
+      "embroidery": "вышивание",
+      "calligraphy": "каллиграфия",
+      "interior": "дизайн интерьера",
+      "guitar": "игра на гитаре",
+      "singing": "пение",
+      "dancing": "танцы",
+      "sewing": "шитье"
     },
     "hobbies": {
       "reading": "Плавание",
