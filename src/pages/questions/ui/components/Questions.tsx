@@ -1,13 +1,15 @@
 import '@telegram-apps/telegram-ui/dist/styles.css';
 import React, {useMemo, useState} from 'react';
 import {useQuestions} from "../../../../hooks/useQuestions.ts";
-import {Button, Cell, Input, Progress, Text, Textarea} from "@telegram-apps/telegram-ui";
+import {Badge, Button, Cell, Input, Progress, Text, Textarea} from "@telegram-apps/telegram-ui";
 import {observer} from "mobx-react-lite";
 import formInfoStore from "../../../../shared/store/store.ts";
 import {CustomProgress} from "./CustomProgress.tsx";
+import {useTranslation} from "react-i18next";
 
 export const Questions = observer(() => {
     const { getQuestions } = useQuestions();
+    const { t } = useTranslation();
     const {answers} = formInfoStore;
 
     const [currentStep, setCurrentStep] = useState<number>(0);
@@ -44,6 +46,9 @@ export const Questions = observer(() => {
         return (currentStep + 1) / totalSteps;
     }, [currentStep, totalSteps]);
 
+    const currentAnswer = formInfoStore.getAnswer(currentQuestionId);
+    const currentLength = currentAnswer.length;
+
     return (
         <div
             style={{
@@ -51,7 +56,7 @@ export const Questions = observer(() => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '20px',
+                paddingTop :'25px',
                 maxWidth: '500px',
                 margin: '0 auto',
                 textAlign: 'center',
@@ -59,37 +64,56 @@ export const Questions = observer(() => {
 
             }}
         >
-            <Text size={1} weight={"2"}>Ответь на несколько вопросов, чтобы мы могли лучше понять человека, для которого ищем подарок</Text>
+            <Text size={1} >{t('title_questions')}</Text>
 
             <div style={{ marginBottom: '20px' }}>
-                <Text>{currentQuestion.title}</Text>
-                <Textarea
-                    placeholder={currentQuestion.placeholder}
-                    value={answers[currentQuestionId] || ''}
-                    onChange={(e) => saveAnswer(e.target.value)}
-                    rows={6}
-                    maxLength={100}
-                    style={{ width: '100%' }}
-                />
+                <Text weight={"2"}>{currentQuestion.title}</Text>
+                <div style={{position: 'relative'}}>
+                    <Textarea
+                        placeholder={currentQuestion.placeholder}
+                        value={currentAnswer}
+                        onChange={(e) => saveAnswer(e.target.value)}
+                        rows={6}
+                        maxLength={100}
+                    />
+
+                    {/* Простой счетчик */}
+                    <Badge style={{
+                        position: 'absolute',
+                        bottom: '22px',
+                        right: '20px',
+                        fontSize: '12px',
+                        pointerEvents: 'none'
+                    }} type={'number'} mode={'secondary'}>
+                        {currentLength}/100
+                    </Badge>
+                </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '10px', justifyContent: 'space-between' }}>
-                <Button
-                    onClick={prevStep}
-                    disabled={currentStep === 0}
-                    mode="bezeled"
-                >
-                    Назад
-                </Button>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '20px',
+                }}>
+                    <div style={{display: 'flex', gap: '40px', justifyContent: 'space-between'}}>
+                        <Button
+                            onClick={prevStep}
+                            disabled={currentStep === 0}
+                            mode="bezeled"
+                        >
+                            {t('buttons:back')}
+                        </Button>
 
-                <Button
-                    onClick={currentStep === totalSteps - 1 ? handleSubmit : nextStep}
-                    mode="filled"
-                >
-                    {currentStep === totalSteps - 1 ? 'Завершить' : 'Далее'}
-                </Button>
+                        <Button
+                            onClick={currentStep === totalSteps - 1 ? handleSubmit : nextStep}
+                            mode="filled"
+                    >
+                        {currentStep === totalSteps - 1 ? t('buttons:complete') : t('buttons:next')}
+                    </Button>
+                </div>
+                <CustomProgress value={progress}/>
             </div>
-            <CustomProgress value={progress} />
+
         </div>
     );
 });

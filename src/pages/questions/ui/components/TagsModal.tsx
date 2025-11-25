@@ -25,7 +25,7 @@ export const TagsModal = observer(({tag, setOpen, open}: TagsModalProps) => {
             onOpenChange={setOpen}
             className={'modal'}
         >
-            <div style={{display: 'flex', flexWrap :'wrap', justifyContent: 'center', gap: '5px'}}>
+            <div style={{display: 'flex', flexWrap :'wrap', justifyContent: 'center', gap: '7px'}}>
                 {items.map(item => (
                     <Button
                         key={item.id}

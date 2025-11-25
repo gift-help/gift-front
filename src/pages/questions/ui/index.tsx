@@ -1,5 +1,5 @@
 import {observer} from "mobx-react-lite";
-import {Button, TabsList} from "@telegram-apps/telegram-ui";
+import {Button, IconButton, TabsList} from "@telegram-apps/telegram-ui";
 import {useState} from "react";
 import {Tags} from "./components/Tags.tsx";
 import {useTranslation} from "react-i18next";
@@ -17,20 +17,34 @@ export const QuestionsPage = observer(() => {
             alignItems: 'center',
         }}
         >
-            <TabsList>
-                <TabsList.Item
-                    selected={activeTab === 'tags'}
-                    onClick={() => setActiveTab('tags')}
-                >
-                    {"Интересы"}
-                </TabsList.Item>
-                <TabsList.Item
-                    selected={activeTab === 'questions'}
-                    onClick={() => setActiveTab('questions')}
-                >
-                    {"Вопросы"}
-                </TabsList.Item>
-            </TabsList>
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    width: '100%',
+                }}
+            >
+                <IconButton mode="plain" onClick={() => console.log('Close')}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/>
+                    </svg>
+                </IconButton>
+                <TabsList>
+                    <TabsList.Item
+                        selected={activeTab === 'tags'}
+                        onClick={() => setActiveTab('tags')}
+                    >
+                        {t('interests')}
+                    </TabsList.Item>
+                    <TabsList.Item
+                        selected={activeTab === 'questions'}
+                        onClick={() => setActiveTab('questions')}
+                    >
+                        {t('questions')}
+                    </TabsList.Item>
+                </TabsList>
+            </div>
+
             {activeTab === 'tags' && <Tags/>}
             {activeTab === 'questions' && <Questions/>}
             {activeTab === 'tags' && <Button
@@ -40,21 +54,6 @@ export const QuestionsPage = observer(() => {
             >
                 {t('buttons:next')}
             </Button>}
-            {/*{activeTab === 'questions' && <div>
-                <Button
-                    size="m"
-                    mode={'bezeled'}
-                    onClick={() => setActiveTab('tags')}
-                >
-                    {t('buttons:back')}
-                </Button>
-                <Button
-                    size="m"
-                    mode={'filled'}
-                >
-                    {t('buttons:next')}
-                </Button>
-            </div>}*/}
         </div>
     )
 });
