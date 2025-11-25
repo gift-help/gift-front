@@ -1,6 +1,5 @@
-import {Button, Chip, Modal} from "@telegram-apps/telegram-ui";
+import {Button, Modal} from "@telegram-apps/telegram-ui";
 import {useTags} from "../../../../hooks/useTags.ts";
-import React, {useState} from "react";
 import {observer} from "mobx-react-lite";
 import formInfoStore from "../../../../shared/store/store.ts";
 import '../../../../index.css'

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../../../../i18n.ts';
 import {useTags} from "../../../../hooks/useTags.ts";
-import {Badge, Button, Chip} from "@telegram-apps/telegram-ui";
+import {Badge, Button, Text} from "@telegram-apps/telegram-ui";
 import '../../../../index.css'
 import {TagsModal} from "./TagsModal.tsx";
 import {useTranslation} from "react-i18next";
@@ -27,9 +27,12 @@ export const Tags = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                marginTop: '20px'
+                marginTop: '20px',
+                textAlign: 'center',
+                gap: '20px'
             }}
         >
+            <Text>Выбери ключевые слова, которые лучше всего описывают его интересы и характер. Можно выбрать несколько или не выбрать ничего в каждой категории</Text>
             <div
                 style={{
                     display: 'flex',
@@ -61,11 +64,10 @@ export const Tags = () => {
                             {tags?.[category.id]?.length}
                         </Badge>}
                     </div>
-
                 ))}
             </div>
-
             <TagsModal open={openModal} tag={selectedCategory} setOpen={setOpenModal} />
         </div>
     );
 };
+

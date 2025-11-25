@@ -129,7 +129,7 @@
 }
 
 .modal {
-  background-color: var(--tg-secondary-bg-color) ;
+  background-color: var(--tg-secondary-bg-color) !important;
   padding: 20px;
 }
 

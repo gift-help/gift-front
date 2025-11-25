@@ -5,21 +5,25 @@ import { initReactI18next } from 'react-i18next';
 import enCommon from '../src/locales/en/common.json';
 import enButtons from '../src/locales/en/buttons.json';
 import enTags from '../src/locales/en/tags.json';
+import enQuestions from '../src/locales/en/questions.json';
 
 import ruCommon from '../src/locales/ru/common.json';
 import ruButtons from '../src/locales/ru/buttons.json';
 import ruTags from '../src/locales/ru/tags.json';
+import ruQuestions from '../src/locales/ru/questions.json';
 
 const resources = {
     en: {
         common: enCommon,
         buttons: enButtons,
-        tags: enTags
+        tags: enTags,
+        questions: enQuestions,
     },
     ru: {
         common: ruCommon,
         buttons: ruButtons,
-        tags: ruTags
+        tags: ruTags,
+        questions: ruQuestions,
     },
 };
 

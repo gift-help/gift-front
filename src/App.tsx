@@ -6,9 +6,13 @@ import './i18n';
 import { Button, Input } from '@telegram-apps/telegram-ui'
 import { useCSSTheme } from "./hooks/useCSSTheme.ts";
 import BuildVersion from './components/BuildVersion';
-import {Questions} from "./pages/questions/ui";
+import { QuestionsPage} from "./pages/questions/ui";
 import { useTelegramLanguage } from "./hooks/useTelegramLanguage.ts";
 import { useTranslation } from "react-i18next";
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import {HomePage} from "./pages/home/ui";
+import {BaseInfoPage} from "./pages/baseInfo/ui";
+import {DescriptionPage} from "./pages/description/ui";
 
 function App() {
     const [isTMA, setIsTMA] = useState(false);
@@ -75,16 +79,6 @@ function App() {
         initApp()
     }, [i18n, t])
 
-    // Apply theme colors dynamically
-    const appStyle = {
-        backgroundColor: themeParams?.bg_color ?? '#fff',
-        color: themeParams?.text_color ?? '#17212b',
-        transition: 'all 0.3s ease',
-        minHeight: '100vh',
-        padding: '16px',
-        flexDirection: 'column' as const,
-        display: 'flex',
-    }
 
     if (isLoading || !ready || !i18nReady) {
         return (
@@ -96,38 +90,22 @@ function App() {
         )
     }
 
+    const NavigationWrapper = () => {
+
+        return (
+            <Routes>
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/base_info" element={<BaseInfoPage/>}/>
+                <Route path="/questions" element={<QuestionsPage/>}/>
+                <Route path="/description" element={<DescriptionPage/>}/>
+            </Routes>
+        );
+    }
+
     return (
-        <div className="app" style={appStyle}>
-            <Questions />
-            {/*<h1>Gift Mini App</h1>
-            <h1>{t('title')}</h1>
-            <p>Environment: {isTMA ? 'Telegram' : 'Browser (Development)'}</p>
-            <p>Current Language: {currentLanguage}</p>
-            <p>i18n Language: {i18n.language}</p>
-
-
-            <div>
-                <Button size="l" stretched className={"tg-button"} mode={'filled'}>
-                    🎁 Generate Gift Idea
-                </Button>
-            </div>
-
-            <div>
-                <Button size="m" className={"tg-button--secondary"} mode={'bezeled'}>
-                    Secondary button
-                </Button>
-            </div>
-
-            <div className={"card"}>
-                <p>Это карточка</p>
-            </div>
-
-            <div>
-                <Input
-                    placeholder={"А это инпут"}
-                    className={"input"}/>
-            </div>*/}
-
+        <Router>
+        <div className="app" >
+            <NavigationWrapper />
             {/*{isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
                 <div className="user-info">
                     <h2>User Info:</h2>
@@ -137,9 +115,9 @@ function App() {
                     <p>Language: {window.Telegram.WebApp.initDataUnsafe.user.language_code}</p>
                 </div>
             )}*/}
-
             <BuildVersion />
         </div>
+        </Router>
     )
 }
 

@@ -1,10 +1,11 @@
 import {observer} from "mobx-react-lite";
-import {Button, Tabbar, TabsList} from "@telegram-apps/telegram-ui";
-import React, {useState} from "react";
+import {Button, TabsList} from "@telegram-apps/telegram-ui";
+import {useState} from "react";
 import {Tags} from "./components/Tags.tsx";
 import {useTranslation} from "react-i18next";
+import {Questions} from "./components/Questions.tsx";
 
-export const Questions = observer(() => {
+export const QuestionsPage = observer(() => {
     const [activeTab, setActiveTab] = useState('tags')
     const { t } = useTranslation();
 
@@ -12,7 +13,8 @@ export const Questions = observer(() => {
         <div
         style={{
             display: 'flex',
-            flexDirection: 'column'
+            flexDirection: 'column',
+            alignItems: 'center',
         }}
         >
             <TabsList>
@@ -30,6 +32,7 @@ export const Questions = observer(() => {
                 </TabsList.Item>
             </TabsList>
             {activeTab === 'tags' && <Tags/>}
+            {activeTab === 'questions' && <Questions/>}
             {activeTab === 'tags' && <Button
                 size="m"
                 mode={'filled'}
@@ -37,7 +40,7 @@ export const Questions = observer(() => {
             >
                 {t('buttons:next')}
             </Button>}
-            {activeTab === 'questions' && <div>
+            {/*{activeTab === 'questions' && <div>
                 <Button
                     size="m"
                     mode={'bezeled'}
@@ -51,7 +54,7 @@ export const Questions = observer(() => {
                 >
                     {t('buttons:next')}
                 </Button>
-            </div>}
+            </div>}*/}
         </div>
     )
 });

@@ -1,5 +1,9 @@
 import {makeAutoObservable} from "mobx";
 
+interface Answers {
+    [key: string]: string;
+}
+
 class FormInfoStore {
     gender: string = '';
     age: number = 0;
@@ -11,11 +15,38 @@ class FormInfoStore {
     customBudget: string = '';
     simpleDescription: string = '';
     tags: object = {};
-    answers: string[] = [];
+    answers: Answers = {};
 
     constructor() {
         makeAutoObservable(this);
     }
+
+    // Сохранить ответ на вопрос
+    saveAnswer = (questionId: string, answer: string) => {
+        this.answers[questionId] = answer;
+    };
+
+    // Получить ответ на конкретный вопрос
+    getAnswer = (questionId: string): string => {
+        return this.answers[questionId] || '';
+    };
+
+    // Очистить все ответы
+    clearAnswers = () => {
+        this.answers = {};
+    };
+
+    // Получить количество отвеченных вопросов
+    getAnsweredCount = (): number => {
+        return Object.values(this.answers).filter(answer =>
+            answer && answer.trim() !== ''
+        ).length;
+    };
+
+    // Проверить, отвечен ли вопрос
+    isQuestionAnswered = (questionId: string): boolean => {
+        return !!this.answers[questionId] && this.answers[questionId].trim() !== '';
+    };
 
     addTag = (tag: string, item: string) => {
         if (!this.tags[tag]) {
