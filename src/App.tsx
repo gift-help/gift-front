@@ -1,117 +1,110 @@
-import { useEffect, useState } from 'react'
-import { init, backButton, viewport } from '@telegram-apps/sdk'
-import './App.css'
-import '@telegram-apps/telegram-ui/dist/styles.css'
-import {Button, Input} from '@telegram-apps/telegram-ui'
-import {useCSSTheme} from "./hooks/useCSSTheme.ts";
-import BuildVersion from './components/BuildVersion';
+import { useEffect, useState } from 'react';
+import { init, backButton, viewport } from '@telegram-apps/sdk';
+import '@/App.css';
+import '@telegram-apps/telegram-ui/dist/styles.css';
+import { Button, Input } from '@telegram-apps/telegram-ui';
+import { useCSSTheme } from '@/hooks/useCSSTheme.ts';
+import BuildVersion from '@/components/BuildVersion';
 
 function App() {
-    const [isTMA, setIsTMA] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
-    const { ready, themeParams } = useCSSTheme();
+  const [isTMA, setIsTMA] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const { ready, themeParams } = useCSSTheme();
 
-    useEffect(() => {
-        const initApp = async () => {
-            try {
-                await init()
-                console.log('Running in Telegram Mini App')
+  useEffect(() => {
+    const initApp = async () => {
+      try {
+        await init();
+        console.log('Running in Telegram Mini App');
 
-                backButton.show()
-                backButton.onClick(() => window.history.back())
-                viewport.expand()
-                setIsTMA(true)
-            } catch (error) {
-                console.log('Development mode: Mocking Telegram Web App', error)
-                if (!window.Telegram) {
-                    // mock data for development
-                    window.Telegram = {
-                        WebApp: {
-                            initData: 'mock_data',
-                            initDataUnsafe: {
-                                user: {
-                                    id: 123456789,
-                                    first_name: 'Test',
-                                    username: 'test_user',
-                                },
-                            },
-        
-                            expand: () => console.log('expanded'),
-                            ready: () => console.log('ready'),
-                            close: () => console.log('close'),
-                            sendData: (data: string) => console.log('sendData:', data),
-                        },
-                    }
-                }
-                window.Telegram?.WebApp?.ready?.()
-                window.Telegram?.WebApp?.expand?.()
-                setIsTMA(true)
-            } finally {
-                setIsLoading(false)
-            }
+        backButton.show();
+        backButton.onClick(() => window.history.back());
+        viewport.expand();
+        setIsTMA(true);
+      } catch (error) {
+        console.log('Development mode: Mocking Telegram Web App', error);
+        if (!window.Telegram) {
+          // mock data for development
+          window.Telegram = {
+            WebApp: {
+              initData: 'mock_data',
+              initDataUnsafe: {
+                user: {
+                  id: 123456789,
+                  first_name: 'Test',
+                  username: 'test_user',
+                },
+              },
+
+              expand: () => console.log('expanded'),
+              ready: () => console.log('ready'),
+              close: () => console.log('close'),
+              sendData: (data: string) => console.log('sendData:', data),
+            } as Partial<TelegramWebApp> as unknown as TelegramWebApp,
+          };
         }
+        window.Telegram?.WebApp?.ready?.();
+        window.Telegram?.WebApp?.expand?.();
+        setIsTMA(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-        initApp()
-    }, [])
+    initApp();
+  }, []);
 
-    // Apply theme colors dynamically
-    const appStyle = {
-        backgroundColor: themeParams?.bg_color ?? '#fff',
-        color: themeParams?.text_color ?? '#17212b',
-        transition: 'all 0.3s ease',
-        minHeight: '100vh',
-        padding: '16px',
-        flexDirection: 'column' as const,
-        display: 'flex',
-    }
+  // Apply theme colors dynamically
+  const appStyle = {
+    backgroundColor: themeParams?.bg_color ?? '#fff',
+    color: themeParams?.text_color ?? '#17212b',
+    transition: 'all 0.3s ease',
+    minHeight: '100vh',
+    padding: '16px',
+    flexDirection: 'column' as const,
+    display: 'flex',
+  };
 
-    /*const buttonStyle = {
-        backgroundColor: themeParams?.button_color ?? '#4dabf7',
-        color: themeParams?.button_text_color ?? '#fff',
-    }*/
+  if (isLoading || !ready) {
+    return <div className="loading">Loading...</div>;
+  }
 
-    if (isLoading || !ready) {
-        return <div className="loading">Loading...</div>
-    }
+  return (
+    <div className="app" style={appStyle}>
+      <h1>Gift Mini App</h1>
+      <p>Environment: {isTMA ? 'Telegram' : 'Browser (Development)'}</p>
 
-    return (
-        <div className="app" style={appStyle}>
-            <h1>Gift Mini App</h1>
-            <p>Environment: {isTMA ? 'Telegram' : 'Browser (Development)'}</p>
+      <div>
+        <Button size="l" stretched className={'tg-button'}>
+          🎁 Generate Gift Idea
+        </Button>
+      </div>
 
-            <div>
-                <Button size="l" stretched className={"tg-button"}>
-                    🎁 Generate Gift Idea
-                </Button>
-            </div>
+      <div>
+        <Button size="m" className={'tg-button--secondary'}>
+          Secondary button
+        </Button>
+      </div>
 
-            <div>
-                <Button size="m"  className={"tg-button--secondary"}>
-                    Secondary button
-                </Button>
-            </div>
+      <div className={'card'}>
+        <p>Это карточка</p>
+      </div>
 
-            <div className={"card"}>
-                <p>Это карточка</p>
-            </div>
+      <div>
+        <Input placeholder={'А это инпут'} className={'input'} />
+      </div>
 
-            <div>
-                <Input
-                    placeholder={"А это инпут"}
-                    className={"input"}/>
-            </div>
-
-            {isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
-                <div className="user-info">
-                    <h2>User Info:</h2>
-                    <p>ID: {window.Telegram.WebApp.initDataUnsafe.user.id} </p>
-                    <p>Name: {window.Telegram.WebApp.initDataUnsafe.user.first_name}</p>
-                    <p>Username: @{(window.Telegram.WebApp.initDataUnsafe.user.username)}</p>
-                </div>
-            )}
-            <BuildVersion />
+      {isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
+        <div className="user-info">
+          <h2>User Info:</h2>
+          <p>ID: {window.Telegram.WebApp.initDataUnsafe.user.id} </p>
+          <p>Name: {window.Telegram.WebApp.initDataUnsafe.user.first_name}</p>
+          <p>Username: @{window.Telegram.WebApp.initDataUnsafe.user.username}</p>
         </div>
-    )
+      )}
+      <BuildVersion />
+    </div>
+  );
 }
 
-export default App
+export default App;

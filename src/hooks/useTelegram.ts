@@ -1,20 +1,9 @@
 import { useEffect, useState, useCallback } from 'react';
 import { init } from '@telegram-apps/sdk';
 
-declare global {
-  interface Window {
-    Telegram?: {
-      WebApp?: {
-        themeParams?: Record<string, string>;
-        onEvent?: (event: string, callback: () => void) => void;
-      };
-    };
-  }
-}
-
 interface UseTelegramReturn {
   ready: boolean;
-  themeParams: Record<string, string> | null;
+  themeParams: TelegramThemeParams | null;
 }
 
 const TELEGRAM_EVENTS = {
@@ -22,14 +11,15 @@ const TELEGRAM_EVENTS = {
 };
 
 export function useTelegram(): UseTelegramReturn {
+  const tg = window.Telegram?.WebApp as unknown as TelegramWebApp;
+
   const [ready, setReady] = useState(false);
-  const [themeParams, setThemeParams] = useState<Record<string, string> | null>(null);
+  const [themeParams, setThemeParams] = useState<TelegramThemeParams | null>(null);
 
   // Функция для получения параметров темы
-  const getThemeParams = useCallback((): Record<string, string> | null => {
-    console.log(window.Telegram?.WebApp?.themeParams);
-    return window.Telegram?.WebApp?.themeParams ?? null;
-  }, []);
+  const getThemeParams = useCallback((): TelegramThemeParams | null => {
+    return tg?.themeParams ?? null;
+  }, [tg]);
 
   // Функция для обработки изменения темы
   const handleThemeChange = useCallback(() => {
@@ -52,11 +42,14 @@ export function useTelegram(): UseTelegramReturn {
         setReady(true);
 
         // Подписка на события изменения темы
-        const webApp = window.Telegram?.WebApp;
-        if (webApp?.onEvent) {
-          webApp.onEvent(TELEGRAM_EVENTS.THEME_CHANGED, handleThemeChange);
+        if (tg?.onEvent) {
+          tg.onEvent(TELEGRAM_EVENTS.THEME_CHANGED, handleThemeChange);
 
-          cleanup = () => {};
+          cleanup = () => {
+            if (tg.offEvent) {
+              tg.offEvent(TELEGRAM_EVENTS.THEME_CHANGED, handleThemeChange);
+            }
+          };
         }
       } catch (error) {
         console.error('Failed to initialize Telegram WebApp:', error);
@@ -72,7 +65,7 @@ export function useTelegram(): UseTelegramReturn {
       mounted = false;
       cleanup?.();
     };
-  }, [getThemeParams, handleThemeChange]);
+  }, [getThemeParams, handleThemeChange, tg]);
 
   return { ready, themeParams };
 }
