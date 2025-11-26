@@ -13,6 +13,7 @@ import {BaseInfoPage} from "./pages/baseInfo/ui";
 import {DescriptionPage} from "./pages/description/ui";
 
 function App() {
+    // @ts-ignore
     const [isTMA, setIsTMA] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const { ready } = useCSSTheme();
@@ -103,7 +104,7 @@ function App() {
         <Router>
         <div className="app" >
             <NavigationWrapper />
-            {isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
+            {/*{isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
                 <div className="user-info">
                     <h2>User Info:</h2>
                     <p>ID: {window.Telegram.WebApp.initDataUnsafe.user.id} </p>
@@ -111,7 +112,7 @@ function App() {
                     <p>Username: @{(window.Telegram.WebApp.initDataUnsafe.user.username)}</p>
                     <p>Language: {window.Telegram.WebApp.initDataUnsafe.user.language_code}</p>
                 </div>
-            )}
+            )}*/}
             <BuildVersion />
         </div>
         </Router>
