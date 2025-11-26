@@ -38,4 +38,4 @@ jobs:
             
             echo "____Frontend: installing and building____"
             npm install
-            npm run non-type-build
+            npm run build
