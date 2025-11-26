@@ -47,8 +47,7 @@ i18n
     .init({
         resources,
         lng: getTelegramLanguage(), // Устанавливаем язык сразу
-        fallbackLng: 'en',
-        debug: process.env.NODE_ENV === 'development',
+        fallbackLng: 'ru',
 
         interpolation: {
             escapeValue: false,

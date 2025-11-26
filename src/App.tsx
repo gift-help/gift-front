@@ -6,7 +6,6 @@ import './i18n';
 import { useCSSTheme } from "./hooks/useCSSTheme.ts";
 import BuildVersion from './components/BuildVersion';
 import { QuestionsPage} from "./pages/questions/ui";
-import { useTelegramLanguage } from "./hooks/useTelegramLanguage.ts";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {HomePage} from "./pages/home/ui";
@@ -16,9 +15,8 @@ import {DescriptionPage} from "./pages/description/ui";
 function App() {
     const [isTMA, setIsTMA] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const { ready, themeParams } = useCSSTheme();
+    const { ready } = useCSSTheme();
     const { t, i18n, ready: i18nReady } = useTranslation();
-    const currentLanguage = useTelegramLanguage();
 
     useEffect(() => {
         const initApp = async () => {
@@ -105,7 +103,7 @@ function App() {
         <Router>
         <div className="app" >
             <NavigationWrapper />
-            {/*{isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
+            {isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
                 <div className="user-info">
                     <h2>User Info:</h2>
                     <p>ID: {window.Telegram.WebApp.initDataUnsafe.user.id} </p>
@@ -113,7 +111,7 @@ function App() {
                     <p>Username: @{(window.Telegram.WebApp.initDataUnsafe.user.username)}</p>
                     <p>Language: {window.Telegram.WebApp.initDataUnsafe.user.language_code}</p>
                 </div>
-            )}*/}
+            )}
             <BuildVersion />
         </div>
         </Router>

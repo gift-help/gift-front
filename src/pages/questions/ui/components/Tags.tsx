@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import '../../../../i18n.ts';
-import {useTags} from "../../../../hooks/useTags.ts";
+import {useTags} from "@/hooks/useTags.ts";
 import {Badge, Button, Text} from "@telegram-apps/telegram-ui";
 import '../../../../index.css'
 import {TagsModal} from "./TagsModal.tsx";
@@ -8,8 +8,8 @@ import {useTranslation} from "react-i18next";
 import formInfoStore from "../../../../shared/store/store.ts";
 
 export const Tags = () => {
-    const { getCategories, getCategoryItems } = useTags();
-    const [selectedCategory, setSelectedCategory] = useState();
+    const { getCategories } = useTags();
+    const [selectedCategory, setSelectedCategory] = useState('');
     const [openModal, setOpenModal] = useState(false);
     const { t } = useTranslation();
     const {tags} = formInfoStore;

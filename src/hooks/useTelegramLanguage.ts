@@ -14,14 +14,8 @@ export const useTelegramLanguage = () => {
             }
         };
 
-        // Проверяем язык при загрузке
         checkTelegramLanguage();
-
-        // Создаем наблюдатель за изменениями в Telegram WebApp
-        let observer;
         if (window.Telegram?.WebApp) {
-            // В реальном приложении нужно найти способ отслеживать изменения
-            // Пока используем периодическую проверку
             const interval = setInterval(checkTelegramLanguage, 1000);
 
             return () => clearInterval(interval);
