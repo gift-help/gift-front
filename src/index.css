@@ -7,19 +7,35 @@
   --tg-button-color: #4dabf7;
   --tg-button-text-color: #ffffff;
   --tg-secondary-bg-color: #f8f9fa;
+/*  accent_text_color: "#168acd";
+  bg_color: "#ffffff";
+  bottom_bar_bg_color: "#ffffff";
+  button_color: "#40a7e3";
+  button_text_color: "#ffffff";
+  destructive_text_color: "#d14e4e";
+  header_bg_color: "#ffffff";
+  hint_color: "#999999";
+  link_color: "#168acd";
+  secondary_bg_color: "#f1f1f1";
+  section_bg_color: "#ffffff";
+  section_header_text_color: "#168acd";
+  section_separator_color: "#e7e7e7";
+  subtitle_text_color: "#999999";
+  text_color: "#000000";*/
 }
 
 .app {
   background-color: var(--tg-bg-color);
   color: var(--tg-text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
-  min-height: 100vh;
-  padding: 16px;
+  height: 100%;
+  padding: 20px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /*color: #40a7e3;*/
 }
 
 .tg-button {
-  background-color: var(--tg-button-color);
+  background-color: var(--tg-hint-color);
   color: var(--tg-button-text-color);
   border: none;
   border-radius: 10px;
@@ -98,4 +114,28 @@
 
 .border-accent {
   border-color: var(--tg-button-color);
+}
+
+.chip {
+  background-color: var(--tg-button-color) !important;
+
+  h6 {
+    color: var(--tg-button-text-color) !important;
+  }
+}
+
+.chip .selected {
+  background-color: var(--tg-button-color) !important;
+}
+
+.modal {
+  background-color: var(--tg-secondary-bg-color) !important;
+  padding: 20px;
+}
+
+.badge {
+  position: absolute;
+  right: -10px;
+  top: 5px;
+  transform: translateY(-50%)
 }

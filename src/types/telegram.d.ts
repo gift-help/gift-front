@@ -53,6 +53,14 @@ declare global {
     button_color?: string;
     button_text_color?: string;
     secondary_bg_color?: string;
+    accent_text_color?: string;
+    bottom_bar_bg_color?: string;
+    destructive_text_color?: string;
+    header_bg_color?: string;
+    section_bg_color?: string;
+    section_header_text_color?: string;
+    section_separator_color?: string;
+    subtitle_text_color?: string;
   }
 
   interface TelegramWebApp {
@@ -78,11 +86,11 @@ declare global {
     close: () => void;
     sendData: (data: string) => void;
 
-    MainButton: TelegramMainButton;
-    BackButton: TelegramBackButton;
+    MainButton?: TelegramMainButton;
+    BackButton?: TelegramBackButton;
 
-    onEvent: (eventType: string, callback: (...args: unknown[]) => void) => void;
-    offEvent: (eventType: string, callback?: (...args: unknown[]) => void) => void;
+    onEvent?: (eventType: string, callback: (...args: unknown[]) => void) => void;
+    offEvent?: (eventType: string, callback?: (...args: unknown[]) => void) => void;
   }
 
   interface Window {

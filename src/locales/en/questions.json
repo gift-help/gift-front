@@ -1,0 +1,38 @@
+{
+  "question_1": {
+    "title": "What does he spend most of his free time and energy on? What can he talk about with sparkling eyes?",
+    "placeholder": "Plays guitar, collects vinyl records..."
+  },
+  "question_2": {
+    "title": "What type of rest does he prefer, what does he usually answer to the question: 'What are you going to do this weekend?'?",
+    "placeholder": "Usually he goes to nature for a walk..."
+  },
+  "question_3": {
+    "title": "What is that 'little thing in life' for him that guaranteedly makes the day better?",
+    "placeholder": "Lavender raf with coconut every morning..."
+  },
+  "question_4": {
+    "title": "Is there something he has been dreaming about for a long time, maybe he told you about something?",
+    "placeholder": "Visiting the largest amusement park..."
+  },
+  "question_5": {
+    "title": "What is his character like (for example, calm, energetic, serious, cheerful), how does he react to non-standard situations?",
+    "placeholder": "He is the calmest person I have ever..."
+  },
+  "question_6": {
+    "title": "What does he value in gifts - practicality, originality, personal meaning?",
+    "placeholder": "He is happy with everything, even a small chocolate bar..."
+  },
+  "question_7": {
+    "title": "Does he have any pets or what animal does he dream of having?",
+    "placeholder": "He has a white fluffy rabbit..."
+  },
+  "question_8": {
+    "title": "What is his style in clothing and interior?",
+    "placeholder": "Nothing unusual, but always looks neat..."
+  },
+  "question_9": {
+    "title": "Is there something that he considers a waste of money or time?",
+    "placeholder": "Buying a car, loves to walk..."
+  }
+}
