@@ -39,7 +39,7 @@ export const Questions = observer(() => {
     };
 
     const handleSubmit = () => {
-        console.log('Все ответы из store:', formInfoStore.answers);
+        console.log('Все ответы из store:', answers);
     };
 
     const progress = useMemo(() => {
@@ -55,18 +55,16 @@ export const Questions = observer(() => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent: 'space-between',
                 paddingTop :'25px',
-                maxWidth: '500px',
-                margin: '0 auto',
                 textAlign: 'center',
                 gap: '20px',
-
+                height: '100%',
             }}
         >
             <Text size={1} >{t('title_questions')}</Text>
 
-            <div style={{ marginBottom: '20px' }}>
+            <div style={{ marginBottom: '20px', width: '100%'}}>
                 <Text weight={"2"}>{currentQuestion.title}</Text>
                 <div style={{position: 'relative'}}>
                     <Textarea
@@ -77,7 +75,6 @@ export const Questions = observer(() => {
                         maxLength={100}
                     />
 
-                    {/* Простой счетчик */}
                     <Badge style={{
                         position: 'absolute',
                         bottom: '22px',

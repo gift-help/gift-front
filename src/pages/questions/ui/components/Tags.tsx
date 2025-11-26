@@ -56,7 +56,7 @@ export const Tags = () => {
                             {category.name}
 
                         </Button>
-                        {tags?.[category.id]?.length && <Badge
+                        {tags?.[category.id]?.length > 0 && <Badge
                             type={'number'}
                             mode={'white'}
                             className={'badge'}
