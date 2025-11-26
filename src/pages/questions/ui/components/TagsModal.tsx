@@ -1,5 +1,5 @@
 import {Button, Modal} from "@telegram-apps/telegram-ui";
-import {useTags} from "../../../../hooks/useTags.ts";
+import {useTags} from "@/hooks/useTags.ts";
 import {observer} from "mobx-react-lite";
 import formInfoStore from "../../../../shared/store/store.ts";
 import '../../../../index.css'
@@ -10,7 +10,7 @@ interface TagsModalProps {
     setOpen: (open: boolean) => void
 }
 export const TagsModal = observer(({tag, setOpen, open}: TagsModalProps) => {
-    const { getCategories, getCategoryItems } = useTags();
+    const {  getCategoryItems } = useTags();
     const {tags} = formInfoStore;
 
     const items = getCategoryItems(tag);
@@ -19,6 +19,7 @@ export const TagsModal = observer(({tag, setOpen, open}: TagsModalProps) => {
         formInfoStore.addTag(tag, item)
     }
 
+    // @ts-ignore
     return(
         <Modal
             open={open}

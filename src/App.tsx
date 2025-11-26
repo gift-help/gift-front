@@ -3,13 +3,12 @@ import { init, backButton, viewport } from '@telegram-apps/sdk'
 import '@telegram-apps/telegram-ui/dist/styles.css'
 import './index.css'
 import './i18n';
-import { Button, Input } from '@telegram-apps/telegram-ui'
 import { useCSSTheme } from "./hooks/useCSSTheme.ts";
 import BuildVersion from './components/BuildVersion';
 import { QuestionsPage} from "./pages/questions/ui";
 import { useTelegramLanguage } from "./hooks/useTelegramLanguage.ts";
 import { useTranslation } from "react-i18next";
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {HomePage} from "./pages/home/ui";
 import {BaseInfoPage} from "./pages/baseInfo/ui";
 import {DescriptionPage} from "./pages/description/ui";

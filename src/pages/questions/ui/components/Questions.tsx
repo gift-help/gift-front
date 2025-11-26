@@ -1,7 +1,7 @@
 import '@telegram-apps/telegram-ui/dist/styles.css';
-import React, {useMemo, useState} from 'react';
-import {useQuestions} from "../../../../hooks/useQuestions.ts";
-import {Badge, Button, Cell, Input, Progress, Text, Textarea} from "@telegram-apps/telegram-ui";
+import {useMemo, useState} from 'react';
+import {useQuestions} from "@/hooks/useQuestions.ts";
+import {Badge, Button, Text, Textarea} from "@telegram-apps/telegram-ui";
 import {observer} from "mobx-react-lite";
 import formInfoStore from "../../../../shared/store/store.ts";
 import {CustomProgress} from "./CustomProgress.tsx";
@@ -13,7 +13,6 @@ export const Questions = observer(() => {
     const {answers} = formInfoStore;
 
     const [currentStep, setCurrentStep] = useState<number>(0);
-    const [visitedSteps, setVisitedSteps] = useState<Set<number>>(new Set([0]));
 
     const questions = getQuestions();
     const questionIds = Object.keys(questions);
@@ -24,7 +23,6 @@ export const Questions = observer(() => {
     const nextStep = () => {
         if (currentStep < totalSteps - 1) {
             setCurrentStep(prev => prev + 1);
-            setVisitedSteps(prev => new Set([...prev, currentStep + 1]));
         }
     };
 
@@ -58,8 +56,7 @@ export const Questions = observer(() => {
                 justifyContent: 'space-between',
                 paddingTop :'25px',
                 textAlign: 'center',
-                gap: '20px',
-                height: '100%',
+                height: '100dvh',
             }}
         >
             <Text size={1} >{t('title_questions')}</Text>
@@ -71,7 +68,7 @@ export const Questions = observer(() => {
                         placeholder={currentQuestion.placeholder}
                         value={currentAnswer}
                         onChange={(e) => saveAnswer(e.target.value)}
-                        rows={6}
+                        rows={7}
                         maxLength={100}
                     />
 
@@ -91,6 +88,8 @@ export const Questions = observer(() => {
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '20px',
+                    justifyContent: 'end',
+                    position: 'sticky'
                 }}>
                     <div style={{display: 'flex', gap: '40px', justifyContent: 'space-between'}}>
                         <Button

@@ -14,7 +14,7 @@ class FormInfoStore {
     budgetRange: string = '';
     customBudget: string = '';
     simpleDescription: string = '';
-    tags: object = {};
+    tags: any = {};
     answers: Answers = {};
 
     constructor() {
@@ -56,7 +56,7 @@ class FormInfoStore {
         if (!this.tags[tag].includes(item)) {
             this.tags[tag].push(item);
         } else {
-            this.tags[tag] = this.tags[tag].filter(t => t !== item)
+            this.tags[tag] = this.tags[tag].filter((t: any) => t !== item)
         }
 
         console.log(this.tags);

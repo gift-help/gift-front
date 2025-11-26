@@ -78,11 +78,11 @@ declare global {
     close: () => void;
     sendData: (data: string) => void;
 
-    MainButton: TelegramMainButton;
-    BackButton: TelegramBackButton;
+    MainButton?: TelegramMainButton;
+    BackButton?: TelegramBackButton;
 
-    onEvent: (eventType: string, callback: (...args: unknown[]) => void) => void;
-    offEvent: (eventType: string, callback?: (...args: unknown[]) => void) => void;
+    onEvent?: (eventType: string, callback: (...args: unknown[]) => void) => void;
+    offEvent?: (eventType: string, callback?: (...args: unknown[]) => void) => void;
   }
 
   interface Window {

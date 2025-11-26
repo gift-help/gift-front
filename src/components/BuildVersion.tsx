@@ -21,7 +21,7 @@ const styles: Record<string, React.CSSProperties> = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '20px 0 60px 0',
+    paddingTop: '20px',
     fontSize: '10px',
     color: 'var(--tg-hint-color:, #6c757d)',
     fontFamily: 'monospace',
