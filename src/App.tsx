@@ -1,18 +1,26 @@
 import { useEffect, useState } from 'react'
 import { init, backButton, viewport } from '@telegram-apps/sdk'
-import './App.css'
 import '@telegram-apps/telegram-ui/dist/styles.css'
-import {Button, Input} from '@telegram-apps/telegram-ui'
-import {useCSSTheme} from "./hooks/useCSSTheme.ts";
+import './index.css'
+import './i18n';
+import { useCSSTheme } from "./hooks/useCSSTheme.ts";
 import BuildVersion from './components/BuildVersion';
 import {HomePage} from "./pages/home/ui";
 import { useAuth } from './hooks/useAuth'; // Добавляем импорт
+import { QuestionsPage} from "./pages/questions/ui";
+import { useTranslation } from "react-i18next";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {BaseInfoPage} from "./pages/baseInfo/ui";
+import {DescriptionPage} from "./pages/description/ui";
 
 function App() {
+    // @ts-ignore
     const [isTMA, setIsTMA] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const { ready, themeParams } = useCSSTheme();
     const { token, isLoading: authLoading, error: authError, refreshToken } = useAuth(); // Используем хук аутентификации
+    const { ready } = useCSSTheme();
+    const { t, i18n, ready: i18nReady } = useTranslation();
 
     useEffect(() => {
         const initApp = async () => {
@@ -20,10 +28,21 @@ function App() {
                 await init()
                 console.log('Running in Telegram Mini App')
 
+                // Ждем инициализации i18n
+                await i18n.isInitialized;
+                console.log('i18n initialized:', i18n.isInitialized);
+                console.log('Current language:', i18n.language);
+                console.log('Available translations:', i18n.getResourceBundle(i18n.language, 'common'));
+                const browserLang = navigator.language?.split('-')[0];
+                console.log(browserLang)
                 backButton.show()
                 backButton.onClick(() => window.history.back())
                 viewport.expand()
                 setIsTMA(true)
+
+                // Тестируем перевод
+                console.log('Translation test:', t('title'));
+
             } catch (error) {
                 console.log('Development mode: Mocking Telegram Web App', error)
                 if (!window.Telegram) {
@@ -36,6 +55,7 @@ function App() {
                                     id: 123456789,
                                     first_name: 'Test',
                                     username: 'test_user',
+                                    language_code: 'ru', // Добавьте language_code для разработки
                                 },
                                 auth_date: Math.floor(Date.now() / 1000),
                                 hash: 'mock_hash',
@@ -51,92 +71,57 @@ function App() {
                 window.Telegram?.WebApp?.ready?.()
                 window.Telegram?.WebApp?.expand?.()
                 setIsTMA(true)
+
+                // Ждем инициализации i18n в dev mode
+                await i18n.isInitialized;
             } finally {
                 setIsLoading(false)
             }
         }
 
         initApp()
-    }, [])
+    }, [i18n, t])
 
-    // Apply theme colors dynamically
-    const appStyle = {
-        backgroundColor: themeParams?.bg_color ?? '#fff',
-        color: themeParams?.text_color ?? '#17212b',
-        transition: 'all 0.3s ease',
-        minHeight: '100vh',
-        padding: '16px',
-        flexDirection: 'column' as const,
-        display: 'flex',
-    }
 
-    if (isLoading || !ready || authLoading) {
-        return <div className="loading">Loading...</div>
-    }
-
-    if (authError) {
+    if (isLoading || !ready || !i18nReady) {
         return (
-            <div className="app" style={appStyle}>
-                <div className="error-container">
-                    <h2>Authentication Error</h2>
-                    <p>{authError}</p>
-                    <Button onClick={refreshToken}>
-                        Retry Authentication
-                    </Button>
-                </div>
+            <div className="loading">
+                Loading...
+                <div>i18n Ready: {i18nReady ? 'Yes' : 'No'}</div>
+                <div>Language: {i18n.language}</div>
             </div>
+        )
+    }
+
+    const NavigationWrapper = () => {
+
+        return (
+            <Routes>
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/base_info" element={<BaseInfoPage/>}/>
+                <Route path="/questions" element={<QuestionsPage/>}/>
+                <Route path="/description" element={<DescriptionPage/>}/>
+            </Routes>
         );
     }
 
     return (
-        <div className="app" style={appStyle}>
-            <h1>Gift Mini App</h1>
-            <p>Environment: {isTMA ? 'Telegram' : 'Browser (Development)'}</p>
-
-            {/* Показываем статус аутентификации */}
-            <div className="auth-status">
-                <p>Authentication: {token ? '✅ Success' : '❌ Failed'}</p>
-                {token && (
-                    <p className="token-info">
-                        Token: {token.substring(0, 20)}...
-                    </p>
-                )}
-            </div>
-
-            <div>
-                <Button size="l" stretched className={"tg-button"}>
-                    🎁 Generate Gift Idea
-                </Button>
-            </div>
-
-            <div>
-                <Button size="m" className={"tg-button--secondary"}>
-                    Secondary button
-                </Button>
-            </div>
-
-            <div className={"card"}>
-                <p>Это карточка</p>
-            </div>
-
-            <div>
-                <Input
-                    placeholder={"А это инпут"}
-                    className={"input"}/>
-            </div>
-
-            {isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
+        <Router>
+        <div className="app" >
+            <NavigationWrapper />
+            {/*{isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
                 <div className="user-info">
                     <h2>User Info:</h2>
                     <p>ID: {window.Telegram.WebApp.initDataUnsafe.user.id} </p>
                     <p>Name: {window.Telegram.WebApp.initDataUnsafe.user.first_name}</p>
                     <p>Username: @{(window.Telegram.WebApp.initDataUnsafe.user.username)}</p>
+                    <p>Language: {window.Telegram.WebApp.initDataUnsafe.user.language_code}</p>
                 </div>
-            )}
+            )}*/}
             <BuildVersion />
-            {/*<HomePage />*/}
         </div>
+        </Router>
     )
 }
 
-export default App
+export default App;

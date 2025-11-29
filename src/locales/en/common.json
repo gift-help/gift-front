@@ -1,0 +1,12 @@
+{
+  "welcome": "Welcome to our app!",
+  "title": "My Telegram App",
+  "description": "This is a multilingual Telegram Mini App",
+  "loading": "Loading...",
+  "error": "An error occurred",
+  "success": "Operation completed successfully",
+  "title_tags": "Select keywords that best describe their interests and personality. You can choose several or nothing in each category",
+  "title_questions": "Answer a few questions so we can better understand the person we're looking for a gift for",
+  "interests": "Interests",
+  "questions": "Questions"
+}

@@ -1,0 +1,47 @@
+import '../i18n.ts';
+import { useTranslation } from 'react-i18next';
+
+export const useTags = () => {
+    const { t } = useTranslation('tags');
+
+    // Получить все категории
+    const getCategories = () => {
+        return [
+            { id: 'creativity', name: t('tags.creativity') },
+            { id: 'hobbies', name: t('tags.hobbies') },
+            { id: 'sport', name: t('tags.sport') },
+            { id: 'technologies', name: t('tags.technologies') },
+            { id: 'style', name: t('tags.style') },
+            { id: 'character', name: t('tags.character') },
+            { id: 'entertainment', name: t('tags.entertainment') },
+            { id: 'art', name: t('tags.art') },
+            { id: 'travel', name: t('tags.travel') },
+            { id: 'home', name: t('tags.home') },
+            { id: 'auto', name: t('tags.auto') },
+        ];
+    };
+
+    // Получить элементы категории
+    const getCategoryItems = (categoryId: string) => {
+        const items = {
+            creativity: ['drawing', 'photography', 'knitting', 'embroidery', 'calligraphy', 'interior', 'guitar', 'singing', 'dancing', 'sewing'],
+            hobbies: ['reading', 'board_games', 'lego', 'puzzles', 'series', 'cooking', 'gardening', 'fishing', 'sports', 'video_games', 'cycling', 'collecting', 'yoga', 'traveling'],
+            sport: ['fitness', 'yoga', 'running', 'swimming', 'cycling', 'gym', 'football', 'hockey', 'basketball', 'volleyball', 'skiing', 'snowboarding', 'surfing', 'hiking', 'fishing', 'hunting', 'bowling', 'badminton', 'tennis', 'ice_skating', 'roller_skating', 'skateboard'],
+            technologies: ['gaming', 'game_console', 'smart_home', 'headphones', 'smartphone', 'tablet', 'laptop', 'computer', 'photographic_equipment', 'drone', 'e-book', 'fitness_bracelet', 'smart_watch', 'virtual_reality', 'audio_equipment', 'new_equipment'],
+            style: ['fashion', 'cosmetics', 'perfume', 'skin_care', 'beard_care', 'manicure', 'jewelry', 'accessories', 'wristwatches', 'bags', 'glasses', 'barbershop', 'tattoos', 'piercing', 'minimalism', 'vintage'],
+            character: ['homebody', 'extrovert', 'introvert', 'sarcastic', 'calm', 'energetic', 'pedantic', 'romantic', 'leader', 'ambitious', 'dreamer', 'pragmatist', 'humorous', 'caring', 'cheerful', 'perfectionist'],
+            entertainment: ['movies', 'anime', 'comics', 'video_blogs', 'podcasts', 'stand-up', 'festivals', 'open-air_film', 'karaoke', 'quizzes'],
+            art: ['music', 'theater', 'museums', 'exhibitions', 'opera', 'ballet', 'graffiti', 'architecture', 'poetry', 'tattoo', 'installations', 'street_art', 'literary', 'sculpture', 'photography'],
+            travel: ['camping', 'hiking', 'car_trips', 'beach_holidays', 'ski_resorts', 'historical_sites', 'photo_hunting', 'diving', 'gardening', 'indoor_plants', 'astronomy'],
+            home: ['cooking', 'needlework', 'interior', 'decor', 'aromatherapy', 'candles', 'indoor_plants', 'pets', 'kitchen_gadgets', 'tableware', 'textiles', 'furniture', 'space_organization', 'antiques'],
+            auto: ['cars', 'motorcycles', 'tuning', 'go-karts', 'auto_racing', 'electric_vehicles', 'bicycle_equipment', 'quadrocopters', 'motorsport', 'car_accessories']
+        };
+
+        return items[categoryId as keyof typeof items]?.map(itemId => ({
+            id: itemId,
+            name: t(`items.${categoryId}.${itemId}`)
+        })) || [];
+    };
+
+    return { getCategories, getCategoryItems };
+};

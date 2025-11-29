@@ -1,8 +1,7 @@
-import {instance} from "../../../shared/api";
-
+import { instance } from '../../../shared/api';
 
 export class HomeApi {
-    static get() {
-        return instance.get(`/temporary/generate-gifts`);
-    }
+  static get() {
+    return instance.get(`/temporary/generate-gifts`);
+  }
 }

@@ -4,7 +4,6 @@ const BuildVersion: React.FC = () => {
   const hash = import.meta.env.VITE_COMMIT_HASH || 'DEV';
   const time = import.meta.env.VITE_BUILD_TIME || 'Local Build';
 
-
   return (
     <div style={styles.container}>
       <div style={styles.row}>
@@ -22,13 +21,13 @@ const styles: Record<string, React.CSSProperties> = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '20px 0 60px 0', 
+    paddingTop: '20px',
     fontSize: '10px',
     color: 'var(--tg-hint-color:, #6c757d)',
     fontFamily: 'monospace',
     width: '100%',
     opacity: 0.6,
-    marginTop: 'auto'
+    marginTop: 'auto',
   },
   row: {
     display: 'flex',
