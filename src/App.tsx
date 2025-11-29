@@ -17,7 +17,7 @@ function App() {
     // @ts-ignore
     const [isTMA, setIsTMA] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const { isLoading: authLoading,logout } = useAuth(); // Используем хук аутентификации
+    const { isLoading: authLoading, logout, token } = useAuth(); // Используем хук аутентификации
     const { ready } = useCSSTheme();
     const { t, i18n, ready: i18nReady } = useTranslation();
 
@@ -72,7 +72,7 @@ function App() {
     }, [i18n, t])
 
 
-    if (isLoading || !ready || !i18nReady || !authLoading) {
+    if (isLoading || !ready || !i18nReady || authLoading) {
         return (
             <div className="loading">
                 Loading...
@@ -107,6 +107,9 @@ function App() {
                     <p>Language: {window.Telegram.WebApp.initDataUnsafe.user.language_code}</p>
                 </div>
             )}*/}
+            {
+                token ? <p>Успешно авторизован</p> : <p>Авторизация не прошла</p>
+            }
             <BuildVersion />
         </div>
         </Router>

@@ -56,14 +56,22 @@ export const Questions = observer(() => {
                 justifyContent: 'space-between',
                 paddingTop :'25px',
                 textAlign: 'center',
-                height: '100dvh',
+                height: '100%',
+                gap: '20px'
             }}
         >
             <Text size={1} >{t('title_questions')}</Text>
 
-            <div style={{ marginBottom: '20px', width: '100%'}}>
+            <div style={{
+                marginBottom: '20px',
+                width: '100%',
+                minHeight: '50vh',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'end'
+            }}>
                 <Text weight={"2"}>{currentQuestion.title}</Text>
-                <div style={{position: 'relative'}}>
+                <div style={{position: 'relative', }}>
                     <Textarea
                         placeholder={currentQuestion.placeholder}
                         value={currentAnswer}
@@ -104,7 +112,7 @@ export const Questions = observer(() => {
                             onClick={currentStep === totalSteps - 1 ? handleSubmit : nextStep}
                             mode="filled"
                     >
-                        {currentStep === totalSteps - 1 ? t('buttons:complete') : t('buttons:next')}
+                        {currentStep === totalSteps - 1 ? t('buttons:send') : t('buttons:next')}
                     </Button>
                 </div>
                 <CustomProgress value={progress}/>
