@@ -2,9 +2,9 @@ export const CustomProgress = ({ value }: { value: number }) => {
   return (
     <div
       style={{
-        width: '100%',
+        width: '200px',
         height: '6px',
-        backgroundColor: 'var(--tgui--secondary_bg_color, #f2f2f2)',
+        backgroundColor: '#4378FF1A',
         borderRadius: '3px',
         overflow: 'hidden',
       }}
@@ -13,7 +13,7 @@ export const CustomProgress = ({ value }: { value: number }) => {
         style={{
           width: `${value * 100}%`,
           height: '100%',
-          backgroundColor: 'var(--tgui--button_color, #2481cc)',
+          backgroundColor: '#007AFF',
           borderRadius: '3px',
           transition: 'width 0.3s ease',
         }}

@@ -1,0 +1,45 @@
+{
+  "title": "Basic Information",
+  "description": "Answer a few basic questions so we can find the perfect gift",
+  "questions": {
+    "gender": "Gender?",
+    "age": "Age?",
+    "occasion": "Occasion?",
+    "format": "Gift Format?",
+    "relation": "How well do you know them?"
+  },
+  "placeholders": {
+    "otherOccasion": "Enter occasion..."
+  },
+  "buttons": {
+    "back": "Back",
+    "next": "Next",
+    "finish": "Finish"
+  },
+  "gender": {
+    "female": "Female",
+    "male": "Male"
+  },
+  "occasion": {
+    "birthday": "Birthday",
+    "newYear": "New Year",
+    "march8": "Women's Day (Mar 8)",
+    "february23": "Men's Day (Feb 23)",
+    "wedding": "Wedding",
+    "anniversary": "Anniversary",
+    "justBecause": "Just Because",
+    "other": "Other"
+  },
+  "format": {
+    "wildberries": "Wildberries Item",
+    "ideaOnly": "Ideas Only"
+  },
+  "relation": {
+    "unknown": "0 points - Don't know at all",
+    "veryPoor": "1 point - Know very poorly",
+    "poor": "2 points - Know poorly",
+    "normal": "3 points - Know normally",
+    "good": "4 points - Know well",
+    "excellent": "5 points - Know perfectly"
+  }
+}

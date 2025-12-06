@@ -63,8 +63,8 @@
 }
 
 .card {
-  background-color: var(--tg-secondary-bg-color);
-  border-radius: 12px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
   padding: 16px;
   margin: 12px 0;
   transition: background-color 0.3s ease;
@@ -138,4 +138,89 @@
   right: -10px;
   top: 5px;
   transform: translateY(-50%)
+}
+
+.header-wrapper {
+  padding: 12px 16px;
+  text-align: center;
+  background: var(--tg-bg-color);
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+}
+
+.options-list {
+  display: grid;
+  justify-content: center;
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.gender-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.age-input-wrapper {
+  width: 102px;
+  margin: 0 auto;
+  text-align: center;
+  caret-color: #007AFF !important;
+}
+
+.other-input-wrapper {
+  width: 323px;
+  margin: 0 auto;
+  text-align: center;
+  caret-color: #007AFF !important;
+}
+
+/* --- Base Info Page Layout --- */
+.base-info-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--tg-bg-color);
+  color: var(--tg-text-color);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px;
+  
+  /* Hide Scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.description {
+  text-align: center;
+  color: var(--tg-text-color);
+  font-size: 15px;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+.base-info-footer {
+  padding-bottom: 20px; /* Bottom spacing for scroll comfort */
 }
