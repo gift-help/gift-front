@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
     "prepush": "npm run type-check && npm run lint",
-    "tunnel": "lt --port 5173 --subdomain my-telegram-app-test"
+    "tunnel": "lt --port 5174 --subdomain my-telegram-app-test"
   },
   "dependencies": {
     "@telegram-apps/sdk": "^3.11.8",

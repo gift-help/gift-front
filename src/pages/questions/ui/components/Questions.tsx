@@ -3,7 +3,7 @@ import {useMemo, useState} from 'react';
 import {useQuestions} from "@/hooks/useQuestions.ts";
 import {Badge, Button, Text, Textarea} from "@telegram-apps/telegram-ui";
 import {observer} from "mobx-react-lite";
-import formInfoStore from "../../../../shared/store/store.ts";
+import formInfoStore from "../../../../shared/store/data.store.ts";
 import {CustomProgress} from "./CustomProgress.tsx";
 import {useTranslation} from "react-i18next";
 

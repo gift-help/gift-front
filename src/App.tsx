@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {HomePage} from "./pages/home/ui";
 import {BaseInfoPage} from "./pages/baseInfo/ui";
 import {DescriptionPage} from "./pages/description/ui";
+import {ResultsPage} from "@/pages/results";
 
 function App() {
     // @ts-ignore
@@ -96,6 +97,7 @@ function App() {
                 <Route path="/base_info" element={<BaseInfoPage/>}/>
                 <Route path="/questions" element={<QuestionsPage/>}/>
                 <Route path="/description" element={<DescriptionPage/>}/>
+                <Route path="/results" element={<ResultsPage/>}/>
             </Routes>
         );
     }

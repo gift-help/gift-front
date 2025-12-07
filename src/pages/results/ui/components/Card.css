@@ -1,0 +1,15 @@
+.cost {
+    color: var(--tg-link-color)
+}
+
+.market {
+    text-decoration: underline;
+    color: var(--tg-hint-color);
+}
+
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%
+}
