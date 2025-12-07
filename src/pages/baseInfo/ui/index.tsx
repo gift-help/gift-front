@@ -77,7 +77,7 @@ export const BaseInfoPage = observer(() => {
               justifyContent: 'center',
             }}
           >
-            <Button size="m" onClick={() => store.submitBaseInfo()} disabled={!store.canProceed}>
+            <Button onClick={() => store.submitBaseInfo()} disabled={!store.canProceed}>
               {t('buttons.next')}
             </Button>
           </div>

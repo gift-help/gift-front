@@ -6,7 +6,7 @@
   --tg-link-color: #3390ec;
   --tg-button-color: #4dabf7;
   --tg-button-text-color: #ffffff;
-  --tg-secondary-bg-color: #f8f9fa;
+  --tg-secondary-bg-color: #f3f3f3;
 /*  accent_text_color: "#168acd";
   bg_color: "#ffffff";
   bottom_bar_bg_color: "#ffffff";
@@ -63,7 +63,7 @@
 }
 
 .card {
-  background-color: #f3f3f3;
+  background-color: var(--tg-secondary-bg-color);
   border-radius: 10px;
   padding: 16px;
   margin: 12px 0;
@@ -182,14 +182,14 @@
   width: 102px;
   margin: 0 auto;
   text-align: center;
-  caret-color: #007AFF !important;
+  caret-color: var(--tg-button-color);
 }
 
 .other-input-wrapper {
   width: 323px;
   margin: 0 auto;
   text-align: center;
-  caret-color: #007AFF !important;
+  caret-color: var(--tg-button-color);
 }
 
 /* --- Base Info Page Layout --- */

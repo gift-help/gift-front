@@ -6,6 +6,7 @@ interface Answers {
 
 class FormInfoStore {
   isBaseInfoComplete = false; // Signal for the UI to navigate to the next page
+  description = '';
 
   gender: string = '';
   age: number | '' = '';
@@ -106,6 +107,20 @@ class FormInfoStore {
     // All conditions must be true to enable the button
     return hasGender && hasAge && hasOccasion && hasFormats && hasRelation;
   }
+
+  // Description
+  setDescription = (value: string) => {
+    if (value.length > 350) return;
+    this.description = value;
+  };
+
+  get canSubmitDescription() {
+    return this.description.trim().length > 0;
+  }
+
+  submitDescription = () => {
+    console.log('Submitting description:', this.description);
+  };
 
   // Сохранить ответ на вопрос
   saveAnswer = (questionId: string, answer: string) => {

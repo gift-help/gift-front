@@ -7,12 +7,14 @@ import enButtons from '../src/locales/en/buttons.json';
 import enTags from '../src/locales/en/tags.json';
 import enQuestions from '../src/locales/en/questions.json';
 import enBaseInfo from '../src/locales/en/baseInfo.json';
+import enDescription from '../src/locales/en/description.json';
 
 import ruCommon from '../src/locales/ru/common.json';
 import ruButtons from '../src/locales/ru/buttons.json';
 import ruTags from '../src/locales/ru/tags.json';
 import ruQuestions from '../src/locales/ru/questions.json';
 import ruBaseInfo from '../src/locales/ru/baseInfo.json';
+import ruDescription from '../src/locales/ru/description.json';
 
 const resources = {
   en: {
@@ -21,6 +23,7 @@ const resources = {
     tags: enTags,
     questions: enQuestions,
     baseInfo: enBaseInfo,
+    description: enDescription,
   },
   ru: {
     common: ruCommon,
@@ -28,6 +31,7 @@ const resources = {
     tags: ruTags,
     questions: ruQuestions,
     baseInfo: ruBaseInfo,
+    description: ruDescription,
   },
 };
 
