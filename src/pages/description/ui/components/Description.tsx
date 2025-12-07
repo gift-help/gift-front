@@ -9,7 +9,7 @@ const CloseIconSvg = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
       d="M18 6L6 18M6 6L18 18"
-      stroke="#007AFF"
+      stroke="var(--tg-button-color)"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -33,8 +33,7 @@ export const DescriptionPage = observer(() => {
         display: 'flex',
         flexDirection: 'column',
         height: '100vh',
-        backgroundColor: '#ffffff',
-        fontFamily: '-apple-system, system-ui, sans-serif',
+        backgroundColor: 'var(--tg-bg-color)',
       }}
     >
       <div
@@ -73,7 +72,7 @@ export const DescriptionPage = observer(() => {
           </Text>
         </div>
 
-        <div style={{ position: 'relative', width: '100%', maxWidth: '350px', margin: '0 auto' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
           <Textarea
             placeholder={getPlaceholder()}
             value={store.description}
@@ -81,6 +80,7 @@ export const DescriptionPage = observer(() => {
             maxLength={maxLength}
             style={{
               height: '355px',
+              caretColor: 'var(--tg-button-color)',
             }}
           />
 
@@ -97,7 +97,7 @@ export const DescriptionPage = observer(() => {
               mode="primary"
               style={{
                 backgroundColor: '#E6F2FF',
-                color: '#007AFF',
+                color: 'var(--tg-button-color)',
                 fontSize: '13px',
                 padding: '6px 10px',
               }}

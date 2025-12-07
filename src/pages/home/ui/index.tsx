@@ -17,6 +17,7 @@ export const HomePage = () => {
     <div>
       <Button onClick={() => navigate('/questions')}>к категориям</Button>
       <Button onClick={() => navigate('/base_info')}>к базовой информации</Button>
+      <Button onClick={() => navigate('/description')}>к описанию</Button>
     </div>
   );
 };
