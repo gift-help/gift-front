@@ -30,7 +30,7 @@ function App() {
     // @ts-ignore
     const [isTMA, setIsTMA] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const {isLoading: authLoading, logout, token } = useAuth();
+    const {isLoading: authLoading, logout, token, error } = useAuth();
     const {ready} = useCSSTheme();
 
     // Функция для инициализации TMA
@@ -91,6 +91,8 @@ function App() {
     useEffect(() => {
         let mounted = true;
 
+        if (error) return
+
         const initializeApp = async () => {
             try {
                 // Ждем инициализации темы
@@ -118,7 +120,7 @@ function App() {
         return () => {
             mounted = false;
         };
-    }, [initTelegramApp]); // Зависимости только от initTelegramApp
+    }, []); // Зависимости только от initTelegramApp
 
     // Проверка состояния загрузки
     if (isLoading || !ready || authLoading) {
@@ -127,13 +129,14 @@ function App() {
                 <div>Loading...</div>
                 <div>Theme ready: {ready ? 'Yes' : 'No'}</div>
                 <div>Auth loading: {authLoading ? 'Yes' : 'No'}</div>
+                <div>Auth error: {error ? 'Yes' : 'No'}</div>
             </div>
         );
     }
 
     return (
         <Router>
-            <div className="app">
+        <div className="app">
                 <NavigationWrapper/>
                 {
                     token ? <p>Успешно авторизован</p> : <p>Авторизация не прошла</p>
