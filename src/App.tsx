@@ -1,15 +1,20 @@
-import { useEffect, useState } from 'react'
-import { init, backButton, viewport } from '@telegram-apps/sdk'
-import '@telegram-apps/telegram-ui/dist/styles.css'
-import './index.css'
+import { useEffect, useState } from 'react';
+import { init, backButton, viewport } from '@telegram-apps/sdk';
+import '@telegram-apps/telegram-ui/dist/styles.css';
+import './index.css';
 import './i18n';
-import { useCSSTheme } from "./hooks/useCSSTheme.ts";
+import { useCSSTheme } from './hooks/useCSSTheme.ts';
 import BuildVersion from './components/BuildVersion';
+import { QuestionsPage } from './pages/questions/ui';
+import { useTranslation } from 'react-i18next';
 import {HomePage} from "./pages/home/ui";
 import { useAuth } from './hooks/useAuth';
 import { QuestionsPage} from "./pages/questions/ui";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HomePage } from './pages/home/ui';
+import { BaseInfoPage } from './pages/baseInfo/ui';
+import { DescriptionPage } from './pages/description/ui';
 import {BaseInfoPage} from "./pages/baseInfo/ui";
 import {DescriptionPage} from "./pages/description/ui";
 
@@ -68,11 +73,10 @@ function App() {
             }
         }
 
-        initApp()
-    }, [i18n, t])
+    initApp();
+  }, [i18n, t]);
 
-
-    if (isLoading || !ready || !i18nReady || authLoading) {
+    if (isLoading || !ready || !i18nReady) {
         return (
             <div className="loading">
                 Loading...
@@ -82,23 +86,22 @@ function App() {
         )
     }
 
-    const NavigationWrapper = () => {
-
-        return (
-            <Routes>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="/base_info" element={<BaseInfoPage/>}/>
-                <Route path="/questions" element={<QuestionsPage/>}/>
-                <Route path="/description" element={<DescriptionPage/>}/>
-            </Routes>
-        );
-    }
-
+  const NavigationWrapper = () => {
     return (
-        <Router>
-        <div className="app" >
-            <NavigationWrapper />
-            {/*{isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/base_info" element={<BaseInfoPage />} />
+        <Route path="/questions" element={<QuestionsPage />} />
+        <Route path="/description" element={<DescriptionPage />} />
+      </Routes>
+    );
+  };
+
+  return (
+    <Router>
+      <div className="app">
+        <NavigationWrapper />
+        {/*{isTMA && window.Telegram?.WebApp?.initDataUnsafe?.user && (
                 <div className="user-info">
                     <h2>User Info:</h2>
                     <p>ID: {window.Telegram.WebApp.initDataUnsafe.user.id} </p>
@@ -107,6 +110,10 @@ function App() {
                     <p>Language: {window.Telegram.WebApp.initDataUnsafe.user.language_code}</p>
                 </div>
             )}*/}
+        <BuildVersion />
+      </div>
+    </Router>
+  );
             {
                 token ? <p>Успешно авторизован</p> : <p>Авторизация не прошла</p>
             }

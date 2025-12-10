@@ -6,7 +6,7 @@
   --tg-link-color: #3390ec;
   --tg-button-color: #4dabf7;
   --tg-button-text-color: #ffffff;
-  --tg-secondary-bg-color: #f8f9fa;
+  --tg-secondary-bg-color: #f3f3f3;
 /*  accent_text_color: "#168acd";
   bg_color: "#ffffff";
   bottom_bar_bg_color: "#ffffff";
@@ -64,10 +64,11 @@
 
 .card {
   background-color: var(--tg-secondary-bg-color);
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 16px;
   margin: 12px 0;
   transition: background-color 0.3s ease;
+  /* width: 100%; */
 }
 
 .text-hint {
@@ -138,4 +139,90 @@
   right: -10px;
   top: 5px;
   transform: translateY(-50%)
+}
+
+.header-wrapper {
+  position: relative;
+  /* padding: 12px 16px; */
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background: var(--tg-bg-color);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+}
+
+.options-list {
+  display: grid;
+  justify-content: center;
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.gender-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.age-input-wrapper {
+  width: 104px;
+  margin: 0 auto;
+  text-align: center;
+  caret-color: var(--tg-button-color);
+}
+
+.base-info-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--tg-bg-color);
+  color: var(--tg-text-color);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px;
+  margin-top: 20px;
+  width: 100%;
+  margin-left: -16px;
+  
+  /* Hide Scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.description {
+  text-align: center;
+  color: var(--tg-text-color);
+  font-size: 15px;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+/* Remove telegram-ui input background */
+div[class*="tgui-"]:has(input) {
+  background: transparent !important;
 }
