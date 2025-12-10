@@ -1,0 +1,22 @@
+{
+  "budget_title": "Бюджет",
+  "marketplace_title": "Маркетплейс",
+  "delivery_title": "Доставка",
+  "budget": {
+    "from": "От",
+    "to": "До"
+  },
+  "marketplace": {
+    "wildberries": "WildBerries",
+    "ozon": "Ozon",
+    "ya_market": "Яндекс Маркет"
+  },
+  "delivery": {
+    "any": "Любой",
+    "today": "Сегодня",
+    "tomorrow": "Завтра",
+    "up_5_days": "До 5 дней"
+  }
+
+
+}

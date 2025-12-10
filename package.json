@@ -12,7 +12,7 @@
     "type-check": "tsc --noEmit",
     "prepush": "npm run type-check && npm run lint",
     "tunnel": "lt --port 5173 --subdomain my-telegram-app-test"
-   },
+  },
   "dependencies": {
     "@telegram-apps/sdk": "^3.11.8",
     "@telegram-apps/telegram-ui": "^2.1.13",
