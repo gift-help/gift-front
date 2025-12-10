@@ -65,7 +65,7 @@ export function useAuth(): UseAuthReturn {
         } else {
             authenticateUser();
         }
-    }, [authenticateUser]);
+    }, []);
 
     return {
         token,
