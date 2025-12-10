@@ -29,7 +29,7 @@ const NavigationWrapper = () => {
 function App() {
     // @ts-ignore
     const [isTMA, setIsTMA] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const {isLoading: authLoading, logout, token } = useAuth();
     const {ready} = useCSSTheme();
 
@@ -67,7 +67,7 @@ function App() {
                         },
                         ready: () => {
                             console.log('Telegram WebApp ready');
-                            setIsLoading(false);
+                            /*setIsLoading(false);*/
                         },
                         expand: () => console.log('expanded'),
                         close: () => logout(),
