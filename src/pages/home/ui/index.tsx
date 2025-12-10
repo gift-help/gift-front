@@ -14,10 +14,11 @@ export const HomePage = () => {
     getData();
   }, []);
   return (
-    <div>
-      <Button onClick={() => navigate('/questions')}>к категориям</Button> <br /> <br />
-      <Button onClick={() => navigate('/base_info')}>к базовой информации</Button> <br /> <br />
-      <Button onClick={() => navigate('/description')}>к описанию</Button>
-    </div>
+      <div>
+          <Button onClick={() => navigate('/questions')}>к категориям</Button> <br/> <br/>
+          <Button onClick={() => navigate('/base_info')}>к базовой информации</Button> <br/> <br/>
+          <Button onClick={() => navigate('/description')}>к описанию</Button> <br/> <br/>
+          <Button onClick={() => navigate('/results')}>к результатам</Button>
+      </div>
   );
 };

@@ -1,9 +1,10 @@
 import { Button, Checkbox, Input, Modal, Radio, Text } from '@telegram-apps/telegram-ui';
 import { observer } from 'mobx-react-lite';
-import '../../../../index.css';
+
 import { useFilters } from '@/hooks/useFilters.ts';
 import { useTranslation } from 'react-i18next';
 import filtersStore from '@/shared/store/filters.store.ts';
+import '../../../../index.css';
 
 interface CardModalProps {
   open: boolean;
@@ -23,7 +24,6 @@ export const FiltersModal = observer(({ setOpen, open }: CardModalProps) => {
           flexWrap: 'wrap',
           justifyContent: 'center',
           alignItems: 'center',
-          gap: '10px',
           padding: '10px',
         }}
       >
@@ -122,3 +122,4 @@ export const FiltersModal = observer(({ setOpen, open }: CardModalProps) => {
     </Modal>
   );
 });
+

@@ -3,9 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { ProductCard } from '@/pages/results/ui/components/Card.tsx';
 import { useState } from 'react';
 import { FiltersModal } from '@/pages/results/ui/components/FiltersModal.tsx';
+import {useNavigate} from "react-router-dom";
 
 export const ResultsPage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [openFiltersModal, setFiltersOpenModal] = useState(false);
 
   const data = [
@@ -62,14 +64,14 @@ export const ResultsPage = () => {
           width: '100%',
         }}
       >
-        <IconButton mode="plain" onClick={() => console.log('Close')}>
+        <IconButton mode="plain" onClick={() => navigate('/')}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z" />
           </svg>
         </IconButton>
       </div>
 
-      <Text weight={'2'}>{t('common:title_results')}</Text>
+      <Text weight={'2'} style={{textAlign: 'center'}}>{t('common:title_results')}</Text>
       <Button
         before={
           <svg

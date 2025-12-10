@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Checkbox } from '@telegram-apps/telegram-ui';
 
 import { useBaseInfo } from '@/hooks/useBaseInfo';
-import formInfoStore from '@/shared/store/store';
+import formInfoStore from '@/shared/store/data.store.ts';
 
 export const FormatCard = observer(() => {
   const store = formInfoStore;
