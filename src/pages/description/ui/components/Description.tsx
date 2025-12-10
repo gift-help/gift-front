@@ -6,14 +6,8 @@ import { useDescription } from '@/hooks/useDescription';
 import formInfoStore from '@/shared/store/store';
 
 const CloseIconSvg = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path
-      d="M18 6L6 18M6 6L18 18"
-      stroke="var(--tg-button-color)"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z" />
   </svg>
 );
 
@@ -32,8 +26,9 @@ export const DescriptionPage = observer(() => {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        height: '100vh',
         backgroundColor: 'var(--tg-bg-color)',
+        maxWidth: '480px',
+        margin: '0 auto',
       }}
     >
       <div
@@ -42,76 +37,69 @@ export const DescriptionPage = observer(() => {
           alignItems: 'center',
           justifyContent: 'center',
           position: 'relative',
-          padding: '12px 16px',
           minHeight: '56px',
         }}
       >
         <div
           style={{
             position: 'absolute',
-            left: '16px',
-            top: '50%',
+            left: '-10px',
+            top: '20%',
             transform: 'translateY(-50%)',
-            zIndex: 10,
           }}
         >
           <IconButton mode="plain" onClick={() => navigate(-1)}>
             <CloseIconSvg />
           </IconButton>
         </div>
+        <div
+          style={{
+            top: '20%',
+            position: 'absolute',
+            transform: 'translateY(-50%)',
+          }}
+        >
+          <Text weight="1">{getTitle()}</Text>
+        </div>
+      </div>
 
-        <Text weight="1" style={{ fontSize: 20, fontWeight: 700 }}>
-          {getTitle()}
+      <div style={{ textAlign: 'center', marginBottom: '8px', width: '100%' }}>
+        <Text style={{ fontSize: 14, lineHeight: '16px', fontWeight: 510 }}>
+          {getInstructions()}
         </Text>
       </div>
 
-      <div style={{ flex: 1, padding: '0 16px', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ textAlign: 'center', marginBottom: '24px', padding: '0 10px' }}>
-          <Text style={{ fontSize: 16, lineHeight: '1.4', fontWeight: 500 }}>
-            {getInstructions()}
-          </Text>
-        </div>
+      <div style={{ position: 'relative', width: '100%', boxSizing: 'border-box' }}>
+        <Textarea
+          placeholder={getPlaceholder()}
+          value={store.description}
+          onChange={(e) => store.setDescription(e.target.value)}
+          maxLength={maxLength}
+          style={{
+            height: '355px',
+            caretColor: 'var(--tg-button-color)',
+            width: '323px',
+          }}
+        />
 
-        <div style={{ position: 'relative', width: '100%' }}>
-          <Textarea
-            placeholder={getPlaceholder()}
-            value={store.description}
-            onChange={(e) => store.setDescription(e.target.value)}
-            maxLength={maxLength}
-            style={{
-              height: '355px',
-              caretColor: 'var(--tg-button-color)',
-            }}
-          />
-
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '23px',
-              right: '30px',
-              pointerEvents: 'none',
-            }}
-          >
-            <Badge
-              type="number"
-              mode="primary"
-              style={{
-                backgroundColor: '#E6F2FF',
-                color: 'var(--tg-button-color)',
-                fontSize: '13px',
-                padding: '6px 10px',
-              }}
-            >
-              {store.description.length}/{maxLength}
-            </Badge>
-          </div>
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '23px',
+            right: '30px',
+            pointerEvents: 'none',
+          }}
+        >
+          <Badge type="number" mode="secondary">
+            {store.description.length}/{maxLength}
+          </Badge>
         </div>
       </div>
 
       <div
         style={{
-          padding: '16px',
-          paddingBottom: '32px',
+          paddingTop: '16px',
+          paddingBottom: '20px',
           display: 'flex',
           justifyContent: 'center',
           width: '100%',

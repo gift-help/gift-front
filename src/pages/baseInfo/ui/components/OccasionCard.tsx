@@ -28,16 +28,13 @@ export const OccasionCard = observer(() => {
       </div>
 
       {store.occasion === 'OTHER' && (
-        <div className="other-input-wrapper">
-          <div>
-            <Input
-              placeholder={t('placeholders.otherOccasion')}
-              value={store.customOccasion}
-              onChange={(e) => store.setCustomOccasion(e.target.value)}
-              maxLength={30}
-            />
-          </div>
-        </div>
+        <Input
+          placeholder={t('placeholders.otherOccasion')}
+          value={store.customOccasion}
+          onChange={(e) => store.setCustomOccasion(e.target.value)}
+          maxLength={30}
+          style={{ caretColor: 'var(--tg-button-color)' }}
+        />
       )}
     </div>
   );
