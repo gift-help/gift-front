@@ -6,30 +6,42 @@ import enCommon from '../src/locales/en/common.json';
 import enButtons from '../src/locales/en/buttons.json';
 import enTags from '../src/locales/en/tags.json';
 import enQuestions from '../src/locales/en/questions.json';
+import enBaseInfo from '../src/locales/en/baseInfo.json';
+import enDescription from '../src/locales/en/description.json';
+import enFilters from '../src/locales/en/filters.json';
 
 import ruCommon from '../src/locales/ru/common.json';
 import ruButtons from '../src/locales/ru/buttons.json';
 import ruTags from '../src/locales/ru/tags.json';
 import ruQuestions from '../src/locales/ru/questions.json';
+import ruBaseInfo from '../src/locales/ru/baseInfo.json';
+import ruDescription from '../src/locales/ru/description.json';
+import ruFilters from '../src/locales/ru/filters.json';
 
 const resources = {
-    en: {
-        common: enCommon,
-        buttons: enButtons,
-        tags: enTags,
-        questions: enQuestions,
-    },
-    ru: {
-        common: ruCommon,
-        buttons: ruButtons,
-        tags: ruTags,
-        questions: ruQuestions,
-    },
+  en: {
+    common: enCommon,
+    buttons: enButtons,
+    tags: enTags,
+    questions: enQuestions,
+    baseInfo: enBaseInfo,
+    description: enDescription,
+      filters: enFilters,
+  },
+  ru: {
+    common: ruCommon,
+    buttons: ruButtons,
+    tags: ruTags,
+    questions: ruQuestions,
+    baseInfo: ruBaseInfo,
+    description: ruDescription,
+      filters: ruFilters,
+  },
 };
 
 // Функция для определения языка Telegram
 const getTelegramLanguage = () => {
-    const tgLang = window.Telegram?.WebApp?.initDataUnsafe?.user?.language_code;
+  const tgLang = window.Telegram?.WebApp?.initDataUnsafe?.user?.language_code;
 
     // Поддерживаемые языки
     const supportedLanguages = ['en', 'ru', 'es', 'de', 'fr', 'it'];

@@ -8,5 +8,6 @@
   "title_tags": "Select keywords that best describe their interests and personality. You can choose several or nothing in each category",
   "title_questions": "Answer a few questions so we can better understand the person we're looking for a gift for",
   "interests": "Interests",
-  "questions": "Questions"
+  "questions": "Questions",
+  "title_results": "Selected gift ideas based on your data"
 }

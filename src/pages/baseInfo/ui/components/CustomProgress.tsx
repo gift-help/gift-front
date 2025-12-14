@@ -2,7 +2,7 @@ export const CustomProgress = ({ value }: { value: number }) => {
   return (
     <div
       style={{
-        width: '100%',
+        width: '200px',
         height: '6px',
         backgroundColor: 'var(--tgui--secondary_bg_color, #f2f2f2)',
         borderRadius: '3px',

@@ -1,0 +1,21 @@
+{
+  "budget_title": "Budget",
+  "marketplace_title": "Marketplace",
+  "delivery_title": "Delivery",
+  "budget": {
+    "from": "From",
+    "to": "To"
+  },
+  "marketplace": {
+    "wildberries": "WildBerries",
+    "ozon": "Ozon",
+    "ya_market": "Yandex Market"
+  },
+  "delivery": {
+    "any": "Any",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "up_5_days": "Up to 5 days"
+  }
+
+}
