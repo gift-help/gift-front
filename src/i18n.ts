@@ -26,7 +26,7 @@ const resources = {
     questions: enQuestions,
     baseInfo: enBaseInfo,
     description: enDescription,
-      filters: enFilters,
+    filters: enFilters,
   },
   ru: {
     common: ruCommon,
@@ -35,45 +35,44 @@ const resources = {
     questions: ruQuestions,
     baseInfo: ruBaseInfo,
     description: ruDescription,
-      filters: ruFilters,
+    filters: ruFilters,
   },
 };
 
 // Функция для определения языка Telegram
 const getTelegramLanguage = () => {
-  const tgLang = window.Telegram?.WebApp?.initDataUnsafe?.user?.language_code;
+  // const tgLang = window.Telegram?.WebApp?.initDataUnsafe?.user?.language_code;
+  const tgLang = 'ru';
 
-    // Поддерживаемые языки
-    const supportedLanguages = ['en', 'ru', 'es', 'de', 'fr', 'it'];
+  // Поддерживаемые языки
+  const supportedLanguages = ['en', 'ru', 'es', 'de', 'fr', 'it'];
 
-    if (tgLang && supportedLanguages.includes(tgLang)) {
-        return tgLang;
-    }
+  if (tgLang && supportedLanguages.includes(tgLang)) {
+    return tgLang;
+  }
 
-    // Если язык не поддерживается, используем английский
-    return 'en';
+  // Если язык не поддерживается, используем английский
+  return 'en';
 };
 
-i18n
-    .use(initReactI18next)
-    .init({
-        resources,
-        lng: getTelegramLanguage(), // Устанавливаем язык сразу
-        fallbackLng: 'ru',
+i18n.use(initReactI18next).init({
+  resources,
+  lng: getTelegramLanguage(), // Устанавливаем язык сразу
+  fallbackLng: 'ru',
 
-        interpolation: {
-            escapeValue: false,
-        },
+  interpolation: {
+    escapeValue: false,
+  },
 
-        react: {
-            useSuspense: false,
-        },
+  react: {
+    useSuspense: false,
+  },
 
-        defaultNS: 'common',
-    });
+  defaultNS: 'common',
+});
 
 i18n.on('failedLoading', (lng, ns, msg) => {
-    console.error(`Failed to load language ${lng} namespace ${ns}:`, msg);
+  console.error(`Failed to load language ${lng} namespace ${ns}:`, msg);
 });
 
 export default i18n;

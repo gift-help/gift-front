@@ -3,11 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { ProductCard } from '@/pages/results/ui/components/Card.tsx';
 import { useState } from 'react';
 import { FiltersModal } from '@/pages/results/ui/components/FiltersModal.tsx';
-import {useNavigate} from "react-router-dom";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export const ResultsPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const [openFiltersModal, setFiltersOpenModal] = useState(false);
 
   const data = [
@@ -48,6 +49,22 @@ export const ResultsPage = () => {
       link: 'https',
     },
   ];
+
+  // Map incoming navigation state (expected { gifts: [...] }) to ProductCard shape
+  const navState = (location && (location.state as any)) || {};
+  const gifts = Array.isArray(navState?.gifts) ? navState.gifts : null;
+
+  const products = gifts
+    ? gifts.map((g: any) => ({
+        title: g.name,
+        cost: g.price != null ? String(g.price) : '',
+        market: g.source,
+        description: g.description,
+        link: g.url || g.link || '',
+        image: g.image,
+      }))
+    : data;
+
   return (
     <div
       style={{
@@ -71,7 +88,9 @@ export const ResultsPage = () => {
         </IconButton>
       </div>
 
-      <Text weight={'2'} style={{textAlign: 'center'}}>{t('common:title_results')}</Text>
+      <Text weight={'2'} style={{ textAlign: 'center' }}>
+        {t('common:title_results')}
+      </Text>
       <Button
         before={
           <svg
@@ -100,8 +119,9 @@ export const ResultsPage = () => {
           justifyContent: 'space-between',
         }}
       >
-        {data.map((product) => (
-          <ProductCard product={product} />
+        {/*@ts-ignore*/}
+        {products.map((product, idx) => (
+          <ProductCard key={product.link || product.title || idx} product={product} />
         ))}
       </div>
       <FiltersModal open={openFiltersModal} setOpen={setFiltersOpenModal} />

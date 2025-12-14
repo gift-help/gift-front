@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Tags } from './components/Tags.tsx';
 import { useTranslation } from 'react-i18next';
 import { Questions } from './components/Questions.tsx';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 export const QuestionsPage = observer(() => {
   const [activeTab, setActiveTab] = useState('tags');

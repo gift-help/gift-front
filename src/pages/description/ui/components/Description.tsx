@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 import { Button, Text, Textarea, Badge, IconButton } from '@telegram-apps/telegram-ui';
 
 import { useDescription } from '@/hooks/useDescription';
 import formInfoStore from '@/shared/store/data.store.ts';
+import { giftApi } from '@/shared/api/gift';
 
 const CloseIconSvg = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -15,10 +17,41 @@ export const DescriptionPage = observer(() => {
   const navigate = useNavigate();
   const store = formInfoStore;
   const { getTitle, getInstructions, getPlaceholder, getButtonLabel, maxLength } = useDescription();
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    // keep local store behavior
     store.submitDescription();
-    navigate('/results');
+
+    // assemble payload from store fields (matches example shape)
+    const payload = {
+      base: {
+        gender: store.gender,
+        age: store.age,
+        occasion: store.occasion,
+        customOccasion: store.customOccasion,
+        formats: store.formats.length === 0 ? ['WILDBERRIES'] : store.formats,
+        relationLevel: store.relationLevel,
+        budgetRange: store.budgetRange,
+        customBudget: store.customBudget,
+      }, // store types unknown here; adjust if store exposes differently
+      simpleDescription: store.description,
+      tags: (store as any).tags,
+      answers: Object.values(store.answers),
+    };
+
+    setLoading(true);
+    try {
+      const response = await giftApi.collect(payload);
+      // navigate to /results with gifts as state
+      navigate('/results', { state: { gifts: response.gifts } });
+    } catch (err) {
+      // simple error handling - preserve previous navigation as fallback
+      console.error('gift.collect failed', err);
+      navigate('/results');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -106,8 +139,8 @@ export const DescriptionPage = observer(() => {
           boxSizing: 'border-box',
         }}
       >
-        <Button onClick={handleSubmit} disabled={!store.canSubmitDescription}>
-          {getButtonLabel()}
+        <Button onClick={handleSubmit} disabled={!store.canSubmitDescription || loading}>
+          {loading ? 'Загрузка...' : getButtonLabel()}
         </Button>
       </div>
     </div>

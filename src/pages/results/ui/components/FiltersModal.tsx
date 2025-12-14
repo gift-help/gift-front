@@ -122,4 +122,3 @@ export const FiltersModal = observer(({ setOpen, open }: CardModalProps) => {
     </Modal>
   );
 });
-
