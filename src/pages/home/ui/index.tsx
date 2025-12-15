@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { HomeApi } from '../api';
 import { Button } from '@telegram-apps/telegram-ui';
 import { useNavigate } from 'react-router-dom';
+import BuildVersion from "@/components/BuildVersion.tsx";
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export const HomePage = () => {
           <Button onClick={() => navigate('/base_info')}>к базовой информации</Button> <br/> <br/>
           <Button onClick={() => navigate('/description')}>к описанию</Button> <br/> <br/>
           <Button onClick={() => navigate('/results')}>к результатам</Button>
+          <BuildVersion/>
       </div>
   );
 };
