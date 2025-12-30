@@ -20,6 +20,22 @@ class FormInfoStore {
   tags: any = {};
   answers: Answers = {};
 
+  reset = () => {
+    this.isBaseInfoComplete = false;
+    this.gender = '';
+    this.age = '';
+    this.occasion = '';
+    this.customOccasion = '';
+    this.formats = [];
+    this.relationLevel = '';
+    this.budgetRange = '';
+    this.customBudget = '';
+    this.simpleDescription = '';
+    this.description = '';
+    this.tags = {};
+    this.answers = {};
+  };
+
   constructor() {
     makeAutoObservable(this);
   }
