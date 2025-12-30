@@ -5,7 +5,7 @@ import { Badge, Button, Text } from '@telegram-apps/telegram-ui';
 import '../../../../index.css';
 import { TagsModal } from './TagsModal.tsx';
 import { useTranslation } from 'react-i18next';
-import formInfoStore from '../../../../shared/store/store.ts';
+import formInfoStore from '../../../../shared/store/data.store.ts';
 
 export const Tags = () => {
   const { getCategories } = useTags();

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Text, Textarea, Badge, IconButton } from '@telegram-apps/telegram-ui';
 
 import { useDescription } from '@/hooks/useDescription';
-import formInfoStore from '@/shared/store/store';
+import formInfoStore from '@/shared/store/data.store.ts';
 
 const CloseIconSvg = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">

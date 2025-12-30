@@ -8,6 +8,7 @@ import enTags from '../src/locales/en/tags.json';
 import enQuestions from '../src/locales/en/questions.json';
 import enBaseInfo from '../src/locales/en/baseInfo.json';
 import enDescription from '../src/locales/en/description.json';
+import enFilters from '../src/locales/en/filters.json';
 
 import ruCommon from '../src/locales/ru/common.json';
 import ruButtons from '../src/locales/ru/buttons.json';
@@ -15,6 +16,7 @@ import ruTags from '../src/locales/ru/tags.json';
 import ruQuestions from '../src/locales/ru/questions.json';
 import ruBaseInfo from '../src/locales/ru/baseInfo.json';
 import ruDescription from '../src/locales/ru/description.json';
+import ruFilters from '../src/locales/ru/filters.json';
 
 const resources = {
   en: {
@@ -24,6 +26,7 @@ const resources = {
     questions: enQuestions,
     baseInfo: enBaseInfo,
     description: enDescription,
+    filters: enFilters,
   },
   ru: {
     common: ruCommon,
@@ -32,6 +35,7 @@ const resources = {
     questions: ruQuestions,
     baseInfo: ruBaseInfo,
     description: ruDescription,
+    filters: ruFilters,
   },
 };
 

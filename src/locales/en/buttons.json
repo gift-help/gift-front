@@ -6,5 +6,9 @@
   "submit": "Submit",
   "next": "Next",
   "back": "Back",
-  "complete": "Complete"
+  "complete": "Complete",
+  "filters": "All filters",
+  "clear": "Clear",
+  "apply": "Apply",
+  "send": "Send"
 }

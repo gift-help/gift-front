@@ -11,7 +11,7 @@ import { FormatCard } from './components/FormatCard';
 import { RelationCard } from './components/RelationCard';
 import { CustomProgress } from './components/CustomProgress';
 
-import formInfoStore from '@/shared/store/store';
+import formInfoStore from '@/shared/store/data.store.ts';
 
 export const BaseInfoPage = observer(() => {
   const navigate = useNavigate();

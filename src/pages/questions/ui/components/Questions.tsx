@@ -3,14 +3,16 @@ import { useMemo, useState } from 'react';
 import { useQuestions } from '@/hooks/useQuestions.ts';
 import { Badge, Button, Text, Textarea } from '@telegram-apps/telegram-ui';
 import { observer } from 'mobx-react-lite';
-import formInfoStore from '../../../../shared/store/store.ts';
+import formInfoStore from '../../../../shared/store/data.store.ts';
 import { CustomProgress } from './CustomProgress.tsx';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 export const Questions = observer(() => {
   const { getQuestions } = useQuestions();
   const { t } = useTranslation();
   const { answers } = formInfoStore;
+  const navigate = useNavigate();
 
   const [currentStep, setCurrentStep] = useState<number>(0);
 
@@ -38,6 +40,7 @@ export const Questions = observer(() => {
 
   const handleSubmit = () => {
     console.log('Все ответы из store:', answers);
+    navigate('/description');
   };
 
   const progress = useMemo(() => {
