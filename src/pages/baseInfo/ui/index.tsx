@@ -31,7 +31,7 @@ export const BaseInfoPage = observer(() => {
     const dispose = reaction(
       () => store.isBaseInfoComplete,
       (isComplete) => {
-        if (isComplete) navigate('/questions');
+        if (isComplete) navigate(store.nextRoute);
       },
     );
     return () => dispose();
