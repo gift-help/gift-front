@@ -211,7 +211,7 @@
 .base-info-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /*height: 100vh;*/
   background-color: var(--tg-bg-color);
   color: var(--tg-text-color);
   max-width: 480px;
@@ -246,14 +246,14 @@
 }
 
 .progress-wrapper {
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
   background-color: var(--tg-bg-color);
-  padding-block: 20px;
+  padding-block: 10px;
 }
 
 .card-filter {

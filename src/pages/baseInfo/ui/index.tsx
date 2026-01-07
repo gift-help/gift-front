@@ -82,6 +82,7 @@ export const BaseInfoPage = observer(() => {
                       display: 'flex',
                       padding: '23px',
                       justifyContent: 'center',
+                      marginBottom: '20px'
                   }}
               >
                   <Button onClick={() => store.submitBaseInfo()} disabled={!store.canProceed}>
