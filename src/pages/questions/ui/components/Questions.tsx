@@ -40,7 +40,7 @@ export const Questions = observer(() => {
 
   const handleSubmit = () => {
     console.log('Все ответы из store:', answers);
-    navigate('/description');
+    navigate('/results');
   };
 
   const progress = useMemo(() => {
