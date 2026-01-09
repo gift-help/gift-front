@@ -6,11 +6,13 @@ import { observer } from 'mobx-react-lite';
 import formInfoStore from '../../../../shared/store/data.store.ts';
 import { CustomProgress } from './CustomProgress.tsx';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 export const Questions = observer(() => {
   const { getQuestions } = useQuestions();
   const { t } = useTranslation();
   const { answers } = formInfoStore;
+  const navigate = useNavigate();
 
   const [currentStep, setCurrentStep] = useState<number>(0);
 
@@ -38,6 +40,7 @@ export const Questions = observer(() => {
 
   const handleSubmit = () => {
     console.log('Все ответы из store:', answers);
+    navigate('/results');
   };
 
   const progress = useMemo(() => {
@@ -60,15 +63,17 @@ export const Questions = observer(() => {
     >
       <Text size={1}>{t('title_questions')}</Text>
 
-      <div style={{
+      <div
+        style={{
           marginBottom: '20px',
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
           minHeight: '400px',
-          gap: '20px'
-      }}>
+          gap: '20px',
+        }}
+      >
         <Text weight={'2'}>{currentQuestion.title}</Text>
         <div style={{ position: 'relative' }}>
           <Textarea

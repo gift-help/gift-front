@@ -20,6 +20,22 @@ class FormInfoStore {
   tags: any = {};
   answers: Answers = {};
 
+  reset = () => {
+    this.isBaseInfoComplete = false;
+    this.gender = '';
+    this.age = '';
+    this.occasion = '';
+    this.customOccasion = '';
+    this.formats = [];
+    this.relationLevel = '';
+    this.budgetRange = '';
+    this.customBudget = '';
+    this.simpleDescription = '';
+    this.description = '';
+    this.tags = {};
+    this.answers = {};
+  };
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -83,6 +99,26 @@ class FormInfoStore {
       this.isBaseInfoComplete = true; // Triggers navigation in the UI
     }
   };
+
+  get nextRoute() {
+    const rawValue = (this.relationLevel || '').toUpperCase();
+
+    const levelMap: Record<string, number> = {
+      // High Knowledge (>= 4) -> Description
+      EXCELLENT: 5,
+      GOOD: 4,
+
+      // Low Knowledge (< 4) -> Interests
+      NORMAL: 3,
+      POOR: 2,
+      VERY_POOR: 1,
+      UNKNOWN: 0,
+    };
+
+    // Default to 0 (Interests) if something goes wrong
+    const score = levelMap[rawValue] || 0;
+    return score >= 4 ? '/description' : '/questions';
+  }
 
   // Validation Logic
   get canProceed() {

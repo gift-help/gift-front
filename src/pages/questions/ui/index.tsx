@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Tags } from './components/Tags.tsx';
 import { useTranslation } from 'react-i18next';
 import { Questions } from './components/Questions.tsx';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 export const QuestionsPage = observer(() => {
   const [activeTab, setActiveTab] = useState('tags');
@@ -26,9 +26,15 @@ export const QuestionsPage = observer(() => {
           width: '100%',
         }}
       >
-        <IconButton mode="plain" onClick={() => navigate('/')}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z" />
+        <IconButton mode="plain" onClick={() => navigate(-1)}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M14 18L8 12L14 6"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </IconButton>
         <TabsList>

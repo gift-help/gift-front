@@ -5,9 +5,15 @@ import { Button, Text, Textarea, Badge, IconButton } from '@telegram-apps/telegr
 import { useDescription } from '@/hooks/useDescription';
 import formInfoStore from '@/shared/store/data.store.ts';
 
-const CloseIconSvg = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z" />
+const BackIconSvg = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path
+      d="M14 18L8 12L14 6"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -49,7 +55,7 @@ export const DescriptionPage = observer(() => {
           }}
         >
           <IconButton mode="plain" onClick={() => navigate(-1)}>
-            <CloseIconSvg />
+            <BackIconSvg />
           </IconButton>
         </div>
         <div
@@ -64,9 +70,7 @@ export const DescriptionPage = observer(() => {
       </div>
 
       <div style={{ textAlign: 'center', marginBottom: '8px', width: '100%' }}>
-        <Text>
-          {getInstructions()}
-        </Text>
+        <Text>{getInstructions()}</Text>
       </div>
 
       <div style={{ position: 'relative', width: '100%', boxSizing: 'border-box' }}>
