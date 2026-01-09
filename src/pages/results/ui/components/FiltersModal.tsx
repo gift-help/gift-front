@@ -4,7 +4,6 @@ import { observer } from 'mobx-react-lite';
 import { useFilters } from '@/hooks/useFilters.ts';
 import { useTranslation } from 'react-i18next';
 import filtersStore from '@/shared/store/filters.store.ts';
-import '../../../../index.css';
 
 interface CardModalProps {
   open: boolean;
@@ -27,8 +26,8 @@ export const FiltersModal = observer(({ setOpen, open }: CardModalProps) => {
           padding: '10px',
         }}
       >
-        <div className={'card'}>
-          <Text>{t('filters:budget_title')}</Text>
+        <div className={'card-filter'}>
+          <Text className={'card-title'}>{t('filters:budget_title')}</Text>
           <div
             style={{
               display: 'flex',
@@ -63,8 +62,8 @@ export const FiltersModal = observer(({ setOpen, open }: CardModalProps) => {
           </div>
         </div>
 
-        <div className="card">
-          <Text>{t('filters:marketplace_title')}</Text>
+        <div className="card-filter">
+          <Text className={'card-title'}>{t('filters:marketplace_title')}</Text>
           <div
             style={{
               display: 'grid',
@@ -85,13 +84,12 @@ export const FiltersModal = observer(({ setOpen, open }: CardModalProps) => {
           </div>
         </div>
 
-        <div className={'card'}>
-          <Text>{t('filters:delivery_title')}</Text>
+        <div className={'card-filter'}>
+          <Text className={'card-title'}>{t('filters:delivery_title')}</Text>
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
-              alignItems: 'center',
               justifyContent: 'center',
             }}
           >

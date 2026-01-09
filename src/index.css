@@ -23,6 +23,7 @@
   section_separator_color: "#e7e7e7";
   subtitle_text_color: "#999999";
   text_color: "#000000";*/
+  --tg-scrollbar-width: 0px;
 }
 
 .app {
@@ -33,6 +34,7 @@
   padding: 0 20px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   /*color: #40a7e3;*/
+  overflow: hidden;
 }
 
 .tg-button {
@@ -69,7 +71,7 @@
   border: 1px solid var(--tg-section-separator-color);
   padding: 16px;
   transition: background-color 0.3s ease;
-  text-align: center;
+  /*text-align: center;*/
   width: 90%;
   margin-bottom: 15px;
 }
@@ -133,6 +135,7 @@
 .modal {
   background-color: var(--tg-secondary-bg-color) !important;
   padding: 20px;
+  scrollbar-width: none !important;
 }
 
 .badge {
@@ -140,13 +143,6 @@
   right: -10px;
   top: 5px;
   transform: translateY(-50%)
-}
-
-.card-title {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 16px 0;
 }
 
 .options-list {
@@ -215,7 +211,7 @@
 .base-info-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /*height: 100vh;*/
   background-color: var(--tg-bg-color);
   color: var(--tg-text-color);
   max-width: 480px;
@@ -224,15 +220,16 @@
 
 .content-wrapper {
   flex: 1;
-  overflow-y: auto;
+  /*overflow-y: scroll;*/
+  /*overflow-x: hidden;*/
   padding: 0 16px;
   margin-top: 20px;
   width: 100%;
   margin-left: -16px;
 
   /* Hide Scrollbar */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  /*scrollbar-width: none;
+  -ms-overflow-style: none;*/
 }
 
 .description {
@@ -243,7 +240,41 @@
   line-height: 1.4;
 }
 
-/* Remove telegram-ui input background */
-div[class*="tgui-"]:has(input) {
+.tgui-8ca550c2fc85eff5 {
+  padding: 0 !important;
   background: transparent !important;
+}
+
+.progress-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  background-color: var(--tg-bg-color);
+  padding-block: 10px;
+}
+
+.card-filter {
+  background-color: var(--tg-secondary-bg-color);
+  border-radius: 10px;
+  border: 1px solid var(--tg-section-separator-color);
+  padding: 16px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  width: 90%;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tma-body, .app-container {
+  overflow: hidden;
+}
+
+body, #root, .app {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
