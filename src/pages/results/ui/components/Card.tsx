@@ -17,7 +17,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
-    <Card style={{ width: '48%', marginBottom: '10px' }} onClick={() => setOpenModal(true)}>
+    <Card className={'card-product'} onClick={() => setOpenModal(true)}>
       <div
         style={{
           padding: '40px',

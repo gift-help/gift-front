@@ -4,7 +4,6 @@ import '@telegram-apps/telegram-ui/dist/styles.css';
 import './index.css';
 import './i18n';
 import { useCSSTheme } from './hooks/useCSSTheme.ts';
-import BuildVersion from './components/BuildVersion';
 import { useAuth } from './hooks/useAuth';
 import { QuestionsPage } from './pages/questions/ui';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -30,7 +29,7 @@ function App() {
   // @ts-ignore
   const [isTMA, setIsTMA] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { isLoading: authLoading, logout, token, error } = useAuth();
+  const { isLoading: authLoading, logout, error } = useAuth();
   const { ready } = useCSSTheme();
 
   // Функция для инициализации TMA
@@ -136,8 +135,6 @@ function App() {
     <Router>
       <div className="app">
         <NavigationWrapper />
-        {token ? <p>Успешно авторизован</p> : <p>Авторизация не прошла</p>}
-        <BuildVersion />
       </div>
     </Router>
   );

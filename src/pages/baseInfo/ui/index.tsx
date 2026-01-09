@@ -70,9 +70,7 @@ export const BaseInfoPage = observer(() => {
         <div
           style={{ textAlign: 'center', marginBottom: '24px', width: '100%', marginTop: '15px' }}
         >
-          <Text style={{ fontSize: 14, lineHeight: '16px', fontWeight: 510 }}>
-            {t('description')}
-          </Text>
+          <Text>{t('description')}</Text>
         </div>
 
         <GenderAgeCard />
@@ -82,28 +80,19 @@ export const BaseInfoPage = observer(() => {
 
         <div
           style={{
-            position: 'fixed',
-            bottom: 50,
-            left: 0,
-            right: 0,
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <CustomProgress value={progressValue} />
-        </div>
-
-        <div
-          style={{
             display: 'flex',
             padding: '23px',
             justifyContent: 'center',
+            marginBottom: '20px',
           }}
         >
           <Button onClick={() => store.submitBaseInfo()} disabled={!store.canProceed}>
             {t('buttons.next')}
           </Button>
         </div>
+      </div>
+      <div className="progress-wrapper">
+        <CustomProgress value={progressValue} />
       </div>
     </div>
   );

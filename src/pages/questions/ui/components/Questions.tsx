@@ -59,12 +59,21 @@ export const Questions = observer(() => {
         justifyContent: 'space-between',
         paddingTop: '25px',
         textAlign: 'center',
-        height: '100dvh',
       }}
     >
       <Text size={1}>{t('title_questions')}</Text>
 
-      <div style={{ marginBottom: '20px', width: '100%' }}>
+      <div
+        style={{
+          marginBottom: '20px',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          minHeight: '400px',
+          gap: '20px',
+        }}
+      >
         <Text weight={'2'}>{currentQuestion.title}</Text>
         <div style={{ position: 'relative' }}>
           <Textarea
@@ -78,8 +87,8 @@ export const Questions = observer(() => {
           <Badge
             style={{
               position: 'absolute',
-              bottom: '22px',
-              right: '20px',
+              bottom: '10px',
+              right: '10px',
               fontSize: '12px',
               pointerEvents: 'none',
             }}

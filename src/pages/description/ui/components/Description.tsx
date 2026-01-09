@@ -70,9 +70,7 @@ export const DescriptionPage = observer(() => {
       </div>
 
       <div style={{ textAlign: 'center', marginBottom: '8px', width: '100%' }}>
-        <Text style={{ fontSize: 14, lineHeight: '16px', fontWeight: 510 }}>
-          {getInstructions()}
-        </Text>
+        <Text>{getInstructions()}</Text>
       </div>
 
       <div style={{ position: 'relative', width: '100%', boxSizing: 'border-box' }}>
