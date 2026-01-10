@@ -11,6 +11,7 @@ import { HomePage } from './pages/home/ui';
 import { BaseInfoPage } from './pages/baseInfo/ui';
 import { DescriptionPage } from './pages/description/ui';
 import { ResultsPage } from '@/pages/results';
+import { ProcessingPage } from '@/pages/processing/ui';
 
 // Создаем отдельный компонент для маршрутов
 const NavigationWrapper = () => {
@@ -21,6 +22,7 @@ const NavigationWrapper = () => {
       <Route path="/questions" element={<QuestionsPage />} />
       <Route path="/description" element={<DescriptionPage />} />
       <Route path="/results" element={<ResultsPage />} />
+      <Route path="/processing" element={<ProcessingPage />} />
     </Routes>
   );
 };

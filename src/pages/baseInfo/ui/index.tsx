@@ -7,7 +7,7 @@ import { Button, Text } from '@telegram-apps/telegram-ui';
 
 import { GenderAgeCard } from './components/GenderAgeCard';
 import { OccasionCard } from './components/OccasionCard';
-import { FormatCard } from './components/FormatCard';
+// import { FormatCard } from './components/FormatCard';
 import { RelationCard } from './components/RelationCard';
 import { CustomProgress } from './components/CustomProgress';
 
@@ -38,15 +38,15 @@ export const BaseInfoPage = observer(() => {
   }, [navigate, store]);
 
   // Calculate Progress Logic
-  const { gender, age, occasion, formats, relationLevel } = store;
+  const { gender, age, occasion, relationLevel } = store;
   let filledCount = 0;
   if (gender) filledCount++;
   if (age !== '') filledCount++;
   if (occasion) filledCount++;
-  if (formats.length > 0) filledCount++;
+  // if (formats.length > 0) filledCount++;
   if (relationLevel) filledCount++;
 
-  const progressValue = filledCount / 5;
+  const progressValue = filledCount / 4;
 
   return (
     <div className="base-info-container">
@@ -75,7 +75,7 @@ export const BaseInfoPage = observer(() => {
 
         <GenderAgeCard />
         <OccasionCard />
-        <FormatCard />
+        {/* <FormatCard /> */}
         <RelationCard />
 
         <div

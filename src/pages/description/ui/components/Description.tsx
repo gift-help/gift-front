@@ -24,7 +24,7 @@ export const DescriptionPage = observer(() => {
 
   const handleSubmit = () => {
     store.fetchData();
-    navigate('/results');
+    navigate('/processing');
   };
 
   return (
