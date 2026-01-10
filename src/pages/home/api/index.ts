@@ -1,4 +1,4 @@
-import { instance } from '../../../shared/api';
+import { instance } from '@/shared/api';
 
 export class HomeApi {
   static get() {

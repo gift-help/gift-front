@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 export const Questions = observer(() => {
   const { getQuestions } = useQuestions();
   const { t } = useTranslation();
-  const { answers } = formInfoStore;
   const navigate = useNavigate();
 
   const [currentStep, setCurrentStep] = useState<number>(0);
@@ -39,8 +38,8 @@ export const Questions = observer(() => {
   };
 
   const handleSubmit = () => {
-    console.log('Все ответы из store:', answers);
-    navigate('/results');
+      formInfoStore.fetchData();
+      navigate('/results');
   };
 
   const progress = useMemo(() => {

@@ -1,7 +1,24 @@
 import { makeAutoObservable } from 'mobx';
+import {ResultApi} from "@/pages/results/api";
 
 interface Answers {
   [key: string]: string;
+}
+
+interface BaseInfo {
+  gender: string,
+  age: number | string,
+  occasion: string,
+  formats: string[],
+  budgetRange: string,
+  customOccasion?: string,
+  relationLevel?: string,
+}
+interface RequestBody {
+  base: BaseInfo,
+  tags?: any;
+  simpleDescription?: string;
+  answers?: string[]
 }
 
 class FormInfoStore {
@@ -19,6 +36,19 @@ class FormInfoStore {
   simpleDescription: string = '';
   tags: any = {};
   answers: Answers = {};
+
+  result = [{
+    title: '🌌 Романтический альбом',
+    search_query: 'романтические альбомы для любителей классической музыки',
+    description: 'Альбом с романтическими композициями, который она сможет слушать и наслаждаться.'
+  },
+    {
+      title: '🖼 Картина для интерьера',
+      search_query: 'картины для интерьера романтический стиль',
+      description: 'Картина с романтическим сюжетом украсит её дом и создаст уютную атмосферу.'
+    },];
+  isLoading = false;
+
 
   reset = () => {
     this.isBaseInfoComplete = false;
@@ -154,10 +184,6 @@ class FormInfoStore {
     return this.description.trim().length > 0;
   }
 
-  submitDescription = () => {
-    console.log('Submitting description:', this.description);
-  };
-
   // Сохранить ответ на вопрос
   saveAnswer = (questionId: string, answer: string) => {
     this.answers[questionId] = answer;
@@ -196,6 +222,56 @@ class FormInfoStore {
 
     console.log(this.tags);
   };
+
+  fetchData = async () => {
+    const baseInfo: BaseInfo = {
+      gender: this.gender,
+      age: this.age,
+      occasion: this.occasion,
+      formats: this.formats,
+      budgetRange: 'ANY'
+    }
+
+    if (this.customOccasion.length > 0) {
+      baseInfo.customOccasion = this.customOccasion
+    }
+
+    if (this.relationLevel == 'UNKNOWN' || this.relationLevel == 'VERY_POOR' || this.relationLevel == 'POOR' || this.relationLevel == 'NORMAL') {
+      baseInfo.relationLevel = 'LOW'
+    } else {
+      baseInfo.relationLevel = "HIGH"
+    }
+
+    const requestBody: RequestBody = {
+      base: baseInfo
+    }
+
+    if (Object.keys(this.tags).length > 0) {
+      requestBody.tags = this.tags
+    }
+
+    if (this.description.length > 0) {
+      requestBody.simpleDescription = this.description
+    }
+
+    if (Object.values(this.answers).length > 0) {
+      requestBody.answers = Object.values(this.answers)
+    }
+
+    try {
+      this.isLoading = true;
+
+      const response = await ResultApi.get(requestBody);
+      if (response.data) {
+        this.result = response.data.gifts
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      this.isLoading = false;
+    }
+
+  }
 }
 
 const formInfoStore = new FormInfoStore();

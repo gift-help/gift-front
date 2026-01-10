@@ -15,7 +15,33 @@
 }
 
 .card-product {
-    width: 48%;
     margin-bottom: 10px;
     background-color: var(--tg-secondary-bg-color);
+    min-width: 100px;
+}
+
+.marketplace {
+    border-radius: 20px;
+    padding: 8px 12px;
+
+    p {
+        margin: 0;
+    }
+}
+
+.yamarket {
+    background: linear-gradient(252.01deg, #FF4111 9.73%, #FFE133 64.27%);
+    color: black;
+}
+
+.wb {
+    background: linear-gradient(180deg, #6155F5 0%, #D139E5 100%);
+    color: white;
+}
+
+.ozon {
+    /*background-color: #005bff;*/
+    background-image: url("/public/images/ozon_bg.png");
+    background-size: cover;
+    color: white;
 }
