@@ -1,12 +1,13 @@
-import { Button, IconButton, Text } from '@telegram-apps/telegram-ui';
+import { IconButton, Text } from '@telegram-apps/telegram-ui';
 import { useTranslation } from 'react-i18next';
 import { ProductCard } from '@/pages/results/ui/components/Card.tsx';
-import { useState } from 'react';
+import { useState} from 'react';
 import { FiltersModal } from '@/pages/results/ui/components/FiltersModal.tsx';
 import { useNavigate } from 'react-router-dom';
 import formInfoStore from '@/shared/store/data.store';
+import {observer} from "mobx-react-lite";
 
-export const ResultsPage = () => {
+export const ResultsPage = observer(() => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [openFiltersModal, setFiltersOpenModal] = useState(false);
@@ -15,44 +16,6 @@ export const ResultsPage = () => {
     navigate('/');
   };
 
-  const data = [
-    {
-      title: 'Пазлы длинные очень',
-      cost: '413',
-      market: 'Wildberries',
-      description:
-        'Пазл состоит из 1000 элементов (18х18 мм), дополнительно упакованных в прозрачный пакетик. Большая сложная головоломка понравится как детям, так и взрослым. Яркий красочный дизайн найдет своих почитателей среди настоящих любителей собирать большую сложную мозаику. Сборка пазла — это прекрасный способ развить логическое мышление, внимание и мелкую моторику, а также весело провести время всей семьей. Готовую картину можно оформить в рамку в качестве интерьерной, превратив ее в стильный элемент декора для детской комнаты или гостиной. Упаковка: картонная коробка в термоусадочную пленку. Размер собранной картины 480х680мм (48*68 см). Размер коробки: 21,5х33х5,3 см. Доверяя Hatber, вы покупаете лучшее! Подходит в подарок на Новый год и Рождество',
-      link: 'https',
-    },
-    {
-      title: 'Пазлы',
-      cost: '413',
-      market: 'Wildberries',
-      description: 'lldsdlclfll',
-      link: 'https',
-    },
-    {
-      title: 'Пазлы',
-      cost: '413',
-      market: 'Wildberries',
-      description: 'lldsdlclfll',
-      link: 'https',
-    },
-    {
-      title: 'Пазлы',
-      cost: '413',
-      market: 'Wildberries',
-      description: 'lldsdlclfll',
-      link: 'https',
-    },
-    {
-      title: 'Пазлы',
-      cost: '413',
-      market: 'Wildberries',
-      description: 'lldsdlclfll',
-      link: 'https',
-    },
-  ];
   return (
     <div
       style={{
@@ -79,7 +42,7 @@ export const ResultsPage = () => {
       <Text weight={'2'} style={{ textAlign: 'center' }}>
         {t('common:title_results')}
       </Text>
-      <Button
+      {/*<Button
         before={
           <svg
             width="15"
@@ -98,20 +61,22 @@ export const ResultsPage = () => {
         onClick={() => setFiltersOpenModal(true)}
       >
         {t('buttons:filters')}
-      </Button>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '5px',
-          justifyContent: 'space-between',
-        }}
-      >
-        {data.map((product) => (
-          <ProductCard product={product} />
-        ))}
-      </div>
+      </Button>*/}
+        {formInfoStore.isLoading ?
+            <Text>Ищем подарки...</Text> :
+            (<div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '5px',
+            }}
+        >
+            {
+                formInfoStore.result?.map((product) => (
+                    <ProductCard product={product}/>
+                ))}
+        </div>)}
       <FiltersModal open={openFiltersModal} setOpen={setFiltersOpenModal} />
     </div>
   );
-};
+});

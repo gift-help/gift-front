@@ -23,7 +23,7 @@ export const DescriptionPage = observer(() => {
   const { getTitle, getInstructions, getPlaceholder, getButtonLabel, maxLength } = useDescription();
 
   const handleSubmit = () => {
-    store.submitDescription();
+    store.fetchData();
     navigate('/results');
   };
 
