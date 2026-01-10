@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 import { reaction } from 'mobx';
 import { useTranslation } from 'react-i18next';
-import { Button, IconButton, Text } from '@telegram-apps/telegram-ui';
+import { Button, Text } from '@telegram-apps/telegram-ui';
 
 import { GenderAgeCard } from './components/GenderAgeCard';
 import { OccasionCard } from './components/OccasionCard';
@@ -18,10 +18,10 @@ export const BaseInfoPage = observer(() => {
   const store = formInfoStore;
   const { t } = useTranslation('baseInfo');
   // Handle Close Logic
-  const handleClose = () => {
-    formInfoStore.reset();
-    navigate('/');
-  };
+  // const handleClose = () => {
+  //   formInfoStore.reset();
+  //   navigate('/');
+  // };
 
   // Navigation Logic
   useEffect(() => {
@@ -57,11 +57,11 @@ export const BaseInfoPage = observer(() => {
             left: '-12px',
           }}
         >
-          <IconButton mode="plain" onClick={handleClose}>
+          {/* <IconButton mode="plain" onClick={handleClose}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z" />
             </svg>
-          </IconButton>
+          </IconButton> */}
         </div>
         <Text weight="1">{t('title')}</Text>
       </div>
