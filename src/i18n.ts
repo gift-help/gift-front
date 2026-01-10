@@ -9,6 +9,7 @@ import enQuestions from '../src/locales/en/questions.json';
 import enBaseInfo from '../src/locales/en/baseInfo.json';
 import enDescription from '../src/locales/en/description.json';
 import enFilters from '../src/locales/en/filters.json';
+import enHome from '../src/locales/en/home.json';
 
 import ruCommon from '../src/locales/ru/common.json';
 import ruButtons from '../src/locales/ru/buttons.json';
@@ -17,6 +18,7 @@ import ruQuestions from '../src/locales/ru/questions.json';
 import ruBaseInfo from '../src/locales/ru/baseInfo.json';
 import ruDescription from '../src/locales/ru/description.json';
 import ruFilters from '../src/locales/ru/filters.json';
+import ruHome from '../src/locales/ru/home.json';
 
 const resources = {
   en: {
@@ -27,6 +29,7 @@ const resources = {
     baseInfo: enBaseInfo,
     description: enDescription,
     filters: enFilters,
+    home: enHome,
   },
   ru: {
     common: ruCommon,
@@ -36,6 +39,7 @@ const resources = {
     baseInfo: ruBaseInfo,
     description: ruDescription,
     filters: ruFilters,
+    home: ruHome,
   },
 };
 
@@ -44,7 +48,7 @@ const getTelegramLanguage = () => {
   const tgLang = window.Telegram?.WebApp?.initDataUnsafe?.user?.language_code;
 
   // Поддерживаемые языки
-  const supportedLanguages = ['en', 'ru', 'es', 'de', 'fr', 'it'];
+  const supportedLanguages = ['en', 'ru', 'es', 'de', 'fr', 'it', 'ar'];
 
   if (tgLang && supportedLanguages.includes(tgLang)) {
     return tgLang;

@@ -7,7 +7,7 @@ export const useTelegramLanguage = () => {
   useEffect(() => {
     const checkTelegramLanguage = () => {
       const tgLang = window.Telegram?.WebApp?.initDataUnsafe?.user?.language_code;
-      const supportedLanguages = ['en', 'ru', 'es', 'de', 'fr', 'it'];
+      const supportedLanguages = ['en', 'ru', 'es', 'de', 'fr', 'it', 'ar'];
 
       if (tgLang && supportedLanguages.includes(tgLang) && i18n.language !== tgLang) {
         i18n.changeLanguage(tgLang);
