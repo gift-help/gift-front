@@ -1,4 +1,4 @@
-import { Button, Card, Text } from '@telegram-apps/telegram-ui';
+import { Button, Text } from '@telegram-apps/telegram-ui';
 import './Card.css';
 
 interface ProductCardProps {
@@ -11,7 +11,7 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   return (
-    <Card className={'card-product'}>
+    <div className={'card-product'}>
       <div
         style={{
           display: 'flex',
@@ -58,6 +58,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           </Button>
         </div>
       </div>
-    </Card>
+    </div>
   );
 };

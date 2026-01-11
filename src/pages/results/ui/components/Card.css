@@ -17,8 +17,9 @@
 .card-product {
     margin-bottom: 10px;
     background-color: var(--tg-secondary-bg-color);
-    min-width: 100px;
-    max-width: 98%;
+    min-width: 300px;
+    max-width: 88% !important;
+    border-radius: 20px;
 }
 
 .marketplace {
