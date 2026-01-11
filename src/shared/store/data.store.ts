@@ -1,24 +1,24 @@
 import { makeAutoObservable } from 'mobx';
-import {ResultApi} from "@/pages/results/api";
+import { ResultApi } from '@/pages/results/api';
 
 interface Answers {
   [key: string]: string;
 }
 
 interface BaseInfo {
-  gender: string,
-  age: number | string,
-  occasion: string,
-  formats: string[],
-  budgetRange: string,
-  customOccasion?: string,
-  relationLevel?: string,
+  gender: string;
+  age: number | string;
+  occasion: string;
+  // formats: string[];
+  budgetRange: string;
+  customOccasion?: string;
+  relationLevel?: string;
 }
 interface RequestBody {
-  base: BaseInfo,
+  base: BaseInfo;
   tags?: any;
   simpleDescription?: string;
-  answers?: string[]
+  answers?: string[];
 }
 
 class FormInfoStore {
@@ -37,18 +37,20 @@ class FormInfoStore {
   tags: any = {};
   answers: Answers = {};
 
-  result = [{
-    title: '🌌 Романтический альбом',
-    search_query: 'романтические альбомы для любителей классической музыки',
-    description: 'Альбом с романтическими композициями, который она сможет слушать и наслаждаться.'
-  },
+  result = [
+    {
+      title: '🌌 Романтический альбом',
+      search_query: 'романтические альбомы для любителей классической музыки',
+      description:
+        'Альбом с романтическими композициями, который она сможет слушать и наслаждаться.',
+    },
     {
       title: '🖼 Картина для интерьера',
       search_query: 'картины для интерьера романтический стиль',
-      description: 'Картина с романтическим сюжетом украсит её дом и создаст уютную атмосферу.'
-    },];
+      description: 'Картина с романтическим сюжетом украсит её дом и создаст уютную атмосферу.',
+    },
+  ];
   isLoading = false;
-
 
   reset = () => {
     this.isBaseInfoComplete = false;
@@ -167,11 +169,11 @@ class FormInfoStore {
     }
 
     // 3. Formats (At least one) & Relation
-    const hasFormats = this.formats.length > 0;
+    // const hasFormats = this.formats.length > 0;
     const hasRelation = this.relationLevel !== '';
 
     // All conditions must be true to enable the button
-    return hasGender && hasAge && hasOccasion && hasFormats && hasRelation;
+    return hasGender && hasAge && hasOccasion && hasRelation;
   }
 
   // Description
@@ -228,34 +230,39 @@ class FormInfoStore {
       gender: this.gender,
       age: this.age,
       occasion: this.occasion,
-      formats: this.formats,
-      budgetRange: 'ANY'
-    }
+      // formats: this.formats,
+      budgetRange: 'ANY',
+    };
 
     if (this.customOccasion.length > 0) {
-      baseInfo.customOccasion = this.customOccasion
+      baseInfo.customOccasion = this.customOccasion;
     }
 
-    if (this.relationLevel == 'UNKNOWN' || this.relationLevel == 'VERY_POOR' || this.relationLevel == 'POOR' || this.relationLevel == 'NORMAL') {
-      baseInfo.relationLevel = 'LOW'
+    if (
+      this.relationLevel == 'UNKNOWN' ||
+      this.relationLevel == 'VERY_POOR' ||
+      this.relationLevel == 'POOR' ||
+      this.relationLevel == 'NORMAL'
+    ) {
+      baseInfo.relationLevel = 'LOW';
     } else {
-      baseInfo.relationLevel = "HIGH"
+      baseInfo.relationLevel = 'HIGH';
     }
 
     const requestBody: RequestBody = {
-      base: baseInfo
-    }
+      base: baseInfo,
+    };
 
     if (Object.keys(this.tags).length > 0) {
-      requestBody.tags = this.tags
+      requestBody.tags = this.tags;
     }
 
     if (this.description.length > 0) {
-      requestBody.simpleDescription = this.description
+      requestBody.simpleDescription = this.description;
     }
 
     if (Object.values(this.answers).length > 0) {
-      requestBody.answers = Object.values(this.answers)
+      requestBody.answers = Object.values(this.answers);
     }
 
     try {
@@ -263,15 +270,14 @@ class FormInfoStore {
 
       const response = await ResultApi.get(requestBody);
       if (response.data) {
-        this.result = response.data.gifts
+        this.result = response.data.gifts;
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
       this.isLoading = false;
     }
-
-  }
+  };
 }
 
 const formInfoStore = new FormInfoStore();

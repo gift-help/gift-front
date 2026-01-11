@@ -1,20 +1,20 @@
-import { IconButton, Text } from '@telegram-apps/telegram-ui';
+import { Text } from '@telegram-apps/telegram-ui';
 import { useTranslation } from 'react-i18next';
 import { ProductCard } from '@/pages/results/ui/components/Card.tsx';
-import { useState} from 'react';
+import { useState } from 'react';
 import { FiltersModal } from '@/pages/results/ui/components/FiltersModal.tsx';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import formInfoStore from '@/shared/store/data.store';
-import {observer} from "mobx-react-lite";
+import { observer } from 'mobx-react-lite';
 
 export const ResultsPage = observer(() => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [openFiltersModal, setFiltersOpenModal] = useState(false);
-  const handleClose = () => {
-    formInfoStore.reset();
-    navigate('/');
-  };
+  // const handleClose = () => {
+  //   formInfoStore.reset();
+  //   navigate('/');
+  // };
 
   return (
     <div
@@ -25,7 +25,7 @@ export const ResultsPage = observer(() => {
         gap: '20px',
       }}
     >
-      <div
+      {/* <div
         style={{
           display: 'flex',
           flexDirection: 'row',
@@ -37,7 +37,7 @@ export const ResultsPage = observer(() => {
             <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z" />
           </svg>
         </IconButton>
-      </div>
+      </div> */}
 
       <Text weight={'2'} style={{ textAlign: 'center' }}>
         {t('common:title_results')}
@@ -62,20 +62,21 @@ export const ResultsPage = observer(() => {
       >
         {t('buttons:filters')}
       </Button>*/}
-        {formInfoStore.isLoading ?
-            <Text>Ищем подарки...</Text> :
-            (<div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '5px',
-            }}
+      {formInfoStore.isLoading ? (
+        <Text>Ищем подарки...</Text>
+      ) : (
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '5px',
+          }}
         >
-            {
-                formInfoStore.result?.map((product) => (
-                    <ProductCard product={product}/>
-                ))}
-        </div>)}
+          {formInfoStore.result?.map((product) => (
+            <ProductCard product={product} />
+          ))}
+        </div>
+      )}
       <FiltersModal open={openFiltersModal} setOpen={setFiltersOpenModal} />
     </div>
   );

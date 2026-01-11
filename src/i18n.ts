@@ -10,6 +10,7 @@ import enBaseInfo from '../src/locales/en/baseInfo.json';
 import enDescription from '../src/locales/en/description.json';
 import enFilters from '../src/locales/en/filters.json';
 import enHome from '../src/locales/en/home.json';
+import enProcessing from '../src/locales/en/processing.json';
 
 import ruCommon from '../src/locales/ru/common.json';
 import ruButtons from '../src/locales/ru/buttons.json';
@@ -19,6 +20,7 @@ import ruBaseInfo from '../src/locales/ru/baseInfo.json';
 import ruDescription from '../src/locales/ru/description.json';
 import ruFilters from '../src/locales/ru/filters.json';
 import ruHome from '../src/locales/ru/home.json';
+import ruProcessing from '../src/locales/ru/processing.json';
 
 const resources = {
   en: {
@@ -30,6 +32,7 @@ const resources = {
     description: enDescription,
     filters: enFilters,
     home: enHome,
+    processing: enProcessing,
   },
   ru: {
     common: ruCommon,
@@ -40,6 +43,7 @@ const resources = {
     description: ruDescription,
     filters: ruFilters,
     home: ruHome,
+    processing: ruProcessing,
   },
 };
 

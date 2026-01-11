@@ -38,8 +38,8 @@ export const Questions = observer(() => {
   };
 
   const handleSubmit = () => {
-      formInfoStore.fetchData();
-      navigate('/results');
+    formInfoStore.fetchData();
+    navigate('/processing');
   };
 
   const progress = useMemo(() => {
