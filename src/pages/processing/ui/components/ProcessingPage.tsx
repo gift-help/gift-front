@@ -111,7 +111,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column' as const,
     alignItems: 'center',
-    width: '100%',
+    /*width: '100%',*/
   },
   iconWrapper: {
     position: 'relative' as const,
