@@ -3,9 +3,9 @@ import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import '@telegram-apps/telegram-ui/dist/styles.css';
 import { AppRoot } from '@telegram-apps/telegram-ui';
-import eruda from 'eruda';
+/*import eruda from 'eruda';
 
-eruda.init();
+eruda.init();*/
 
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Failed to find the root element');

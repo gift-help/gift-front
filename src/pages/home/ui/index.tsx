@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { Button, Title, Text } from '@telegram-apps/telegram-ui';
 import { useHome } from '@/hooks/useHome';
-import BuildVersion from '@/components/BuildVersion';
 
 import formInfoStore from '@/shared/store/data.store.ts';
 import giftImage from '../../../assets/gift-box.png';
@@ -59,9 +58,9 @@ export const HomePage = observer(() => {
           {getButtonLabel()}
         </Button>
       </div>
-      <div style={{ marginTop: '60px' }}>
+      {/*<div style={{ marginTop: '60px' }}>
         <BuildVersion />
-      </div>
+      </div>*/}
     </div>
   );
 });

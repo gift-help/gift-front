@@ -55,12 +55,13 @@ export const Questions = observer(() => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'end',
         paddingTop: '25px',
         textAlign: 'center',
+        gap: '30px',
       }}
     >
-      <Text size={1}>{t('title_questions')}</Text>
+      {/*<Text size={1}>{t('title_questions')}</Text>*/}
 
       <div
         style={{
@@ -68,8 +69,8 @@ export const Questions = observer(() => {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          minHeight: '400px',
+          justifyContent: 'end',
+          minHeight: '380px',
           gap: '20px',
         }}
       >
